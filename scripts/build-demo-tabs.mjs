@@ -1076,7 +1076,7 @@ const html = String.raw`<!doctype html>
       "双刀": ["双刀"]
     };
     const invalidManualTerms = new Set(["破竹", "裂石", "牵丝", "鸣金", "无相", "伞", "扇", "鼓", "剑", "枪", "鼓增", "扇增", "伞增", "剑增", "枪增"]);
-    const tabOrder = ["武器","佩","环","头","衣服","腕甲","胫甲"];
+    const tabOrder = ["武器","环","佩","头","衣服","腕甲","胫甲"];
     const attributeGroups = {
       "破竹": ["大破竹", "小破竹"],
       "裂石": ["大裂石", "小裂石"],
@@ -1419,7 +1419,9 @@ const html = String.raw`<!doctype html>
       }
 
       for (const term of Object.keys(counts)) {
-        if (["大外", "小外", "敏", "劲", "全武", "首领"].includes(term)) continue;
+        if ([...initialRequired, ...tuningRequired].some(required => termMatches(required, term))) continue;
+        if (term === "全武" && !(currentSlot === "佩" || currentSlot === "环")) continue;
+        if (term === "首领" && !(currentSlot === "腕甲" || currentSlot === "胫甲")) continue;
         if (WEAPON_RULES.weaponTermToSlot?.[term]) continue;
         addUnique(optionalPool, term);
       }
