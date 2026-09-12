@@ -1,0 +1,643 @@
+{
+  "version": 1,
+  "sourceBenchmarkFile": "data/benchmarks.current.json",
+  "description": "基于 benchmark 数量推导出的装备部位约束。这里只表达每个部位必须有什么、哪些词条按全身计数凑够、哪些词条属于剩余补位池，不写死唯一落法。",
+  "slots": [
+    "主武器",
+    "副武器",
+    "佩",
+    "环",
+    "头",
+    "衣服",
+    "腕甲",
+    "胫甲"
+  ],
+  "slotGroups": {
+    "left4": [
+      "主武器",
+      "副武器",
+      "佩",
+      "环"
+    ],
+    "right4": [
+      "头",
+      "衣服",
+      "腕甲",
+      "胫甲"
+    ],
+    "accessories": [
+      "佩",
+      "环"
+    ],
+    "bossDamageSlots": [
+      "腕甲",
+      "胫甲"
+    ],
+    "singleTargetSlots": [
+      "头",
+      "衣服"
+    ]
+  },
+  "derivationRules": {
+    "externalAttack12": {
+      "appliesWhen": "counts.大外 == 12 or counts.小外 == 12",
+      "meaning": "12条大外/小外由左边4件初始 + 全身8件调律组成。",
+      "slotRequirements": {
+        "left4": {
+          "initial": "对应外功词条",
+          "tuningRequired": [
+            "对应外功词条"
+          ]
+        },
+        "right4": {
+          "tuningRequired": [
+            "对应外功词条"
+          ]
+        }
+      }
+    },
+    "agility8": {
+      "appliesWhen": "counts.敏 == 8",
+      "meaning": "8敏默认按全身8件各1条调律敏处理。",
+      "slotRequirements": {
+        "allSlots": {
+          "tuningRequired": [
+            "敏"
+          ]
+        }
+      }
+    },
+    "jin8OrMore": {
+      "appliesWhen": "counts.劲 >= 8",
+      "meaning": "8劲为全身8件各1条调律劲；超过8的部分优先由腕甲/胫甲初始劲补足。",
+      "examples": {
+        "8劲": "全身8件调律劲",
+        "9劲": "全身8件调律劲 + 腕甲/胫甲其中1件初始劲",
+        "10劲": "全身8件调律劲 + 腕甲和胫甲初始劲"
+      }
+    },
+    "weaponEnhancement": {
+      "terms": [
+        "陌刀",
+        "横刀",
+        "手甲",
+        "伞增",
+        "双刀",
+        "绳镖",
+        "鼓增",
+        "扇增",
+        "剑增"
+      ],
+      "meaning": "武器或武学神力词条优先放主武器；如果同一 benchmark 有多个武器神力词条，则按主武器、副武器分配。",
+      "preferredSlots": [
+        "主武器",
+        "副武器"
+      ]
+    },
+    "allMartialEnhancement": {
+      "term": "全武",
+      "meaning": "2全武默认佩、环各1条。",
+      "slotRequirements": {
+        "佩": {
+          "tuningRequired": [
+            "全武"
+          ]
+        },
+        "环": {
+          "tuningRequired": [
+            "全武"
+          ]
+        }
+      }
+    },
+    "bossDamage": {
+      "term": "首领",
+      "meaning": "2首领默认腕甲、胫甲各1条。",
+      "slotRequirements": {
+        "腕甲": {
+          "tuningRequired": [
+            "首领"
+          ]
+        },
+        "胫甲": {
+          "tuningRequired": [
+            "首领"
+          ]
+        }
+      }
+    },
+    "playerDamage": {
+      "term": "玩家增",
+      "meaning": "玩家增默认按右边防具收益词条处理，当前纯奶样例为2条，先作为全身计数约束。",
+      "preferredSlots": [
+        "腕甲",
+        "胫甲"
+      ]
+    },
+    "singleTargetDamage": {
+      "terms": [
+        "单体",
+        "单体增伤",
+        "单体奇术增伤"
+      ],
+      "meaning": "单体奇术增伤优先头、衣服；如果截图只写单体/单体增伤，先按同类词条处理。",
+      "preferredSlots": [
+        "头",
+        "衣服"
+      ]
+    },
+    "rateTerms": {
+      "terms": [
+        "会心",
+        "精准",
+        "会意"
+      ],
+      "meaning": "三率类不硬绑单件装备，按全身数量凑够；优先利用右边4件初始和调律位。",
+      "preferredSlots": [
+        "头",
+        "衣服",
+        "腕甲",
+        "胫甲"
+      ]
+    },
+    "damageFillTerms": {
+      "terms": [
+        "破竹",
+        "裂石",
+        "牵丝",
+        "鸣金",
+        "无相",
+        "大裂石",
+        "小外",
+        "大裂石/小外",
+        "势"
+      ],
+      "meaning": "这些通常是扣除硬性词条和三率/五维计数后，用剩余调律位尽量补足的伤害词条。按数量匹配，多多益善；缺少时通常低于大外/小外、劲/敏、神力、全武、首领的优先级。"
+    }
+  },
+  "recommendationProfileRules": {
+    "requiredBySlot": [
+      "若为12大外/12小外，左边4件初始必须对应外功，8件调律必须对应外功。",
+      "若为8敏，8件调律必须敏。",
+      "若为10劲，8件调律必须劲，腕甲和胫甲初始必须劲。",
+      "若为9劲，8件调律必须劲，腕甲或胫甲其中1件初始必须劲。",
+      "若为8劲，8件调律必须劲。",
+      "武器神力词条默认主武器；多武器神力词条时主武器、副武器分摊。",
+      "2全武固定佩、环。",
+      "2首领固定腕甲、胫甲。",
+      "2单体/单体增伤/单体奇术增伤优先头、衣服。"
+    ],
+    "globalCountOnly": [
+      "会心",
+      "精准",
+      "会意",
+      "敏",
+      "劲",
+      "势",
+      "破竹",
+      "裂石",
+      "牵丝",
+      "无相",
+      "大裂石",
+      "小外",
+      "大裂石/小外",
+      "劲/大鸣金",
+      "玩家增"
+    ],
+    "priorityOrder": [
+      "部位和套装正确",
+      "12大外/12小外来源正确",
+      "8敏或8/9/10劲来源正确",
+      "主武器神力、佩环全武、腕腿首领等固定神力正确",
+      "会心/精准/会意等全身计数达标",
+      "势、属性伤害、无相、小外等补位词条尽量达标"
+    ]
+  },
+  "derivedBenchmarks": [
+    {
+      "benchmarkId": "xiaowai_pozhu_yuan_qingtian_sanqiong_01",
+      "requiredBySlot": {
+        "主武器": {
+          "initialRequired": [
+            "小外"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏",
+            "手甲"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        },
+        "副武器": {
+          "initialRequired": [
+            "小外"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        },
+        "佩": {
+          "initialRequired": [
+            "小外"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏",
+            "全武"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        },
+        "环": {
+          "initialRequired": [
+            "小外"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏",
+            "全武"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        },
+        "头": {
+          "initialOptionalPool": [
+            "会心",
+            "精准"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        },
+        "衣服": {
+          "initialOptionalPool": [
+            "会心",
+            "精准"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        },
+        "腕甲": {
+          "initialOptionalPool": [
+            "会心",
+            "精准"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏",
+            "首领"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        },
+        "胫甲": {
+          "initialOptionalPool": [
+            "会心",
+            "精准"
+          ],
+          "tuningRequired": [
+            "小外",
+            "敏",
+            "首领"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "破竹",
+            "无相"
+          ]
+        }
+      },
+      "globalCountsRequired": {
+        "会心": 6,
+        "精准": 3,
+        "破竹": 4,
+        "无相": 2
+      },
+      "notes": "手甲增伤默认主武器；会心/精准按全身数量凑够，不强绑单件。"
+    },
+    {
+      "benchmarkId": "dawai_lieshi_wei_shiyu_yixiang_01",
+      "requiredBySlot": {
+        "主武器": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "陌刀"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        },
+        "副武器": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        },
+        "佩": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "全武"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        },
+        "环": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "全武"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        },
+        "头": {
+          "initialOptionalPool": [
+            "会心",
+            "精准"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        },
+        "衣服": {
+          "initialOptionalPool": [
+            "会心",
+            "精准"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        },
+        "腕甲": {
+          "initialRequired": [
+            "劲"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "首领"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        },
+        "胫甲": {
+          "initialRequired": [
+            "劲"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "首领"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "势"
+          ]
+        }
+      },
+      "globalCountsRequired": {
+        "会心": 6,
+        "精准": 2,
+        "势": 5
+      },
+      "notes": "对应截图中裂石·威第一套方案。不存在唯一落法，只要求全身计数达标。"
+    },
+    {
+      "benchmarkId": "dawai_lieshi_wei_shiyu_yixiang_02",
+      "requiredBySlot": {
+        "主武器": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "陌刀"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        },
+        "副武器": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        },
+        "佩": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "全武"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        },
+        "环": {
+          "initialRequired": [
+            "大外"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "全武"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        },
+        "头": {
+          "initialOptionalPool": [
+            "会心",
+            "精准",
+            "会意"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        },
+        "衣服": {
+          "initialOptionalPool": [
+            "会心",
+            "精准",
+            "会意"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        },
+        "腕甲": {
+          "initialRequired": [
+            "劲"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "首领"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        },
+        "胫甲": {
+          "initialRequired": [
+            "劲"
+          ],
+          "tuningRequired": [
+            "大外",
+            "劲",
+            "首领"
+          ],
+          "optionalPool": [
+            "会心",
+            "精准",
+            "会意",
+            "势",
+            "大裂石/小外"
+          ]
+        }
+      },
+      "globalCountsRequired": {
+        "会心": 6,
+        "精准": 2,
+        "会意": 1,
+        "势": 3,
+        "大裂石/小外": 1
+      },
+      "notes": "对应截图中裂石·威第二套方案。大裂石/小外属于最后补位伤害词条。"
+    }
+  ],
+  "autoDerivationCoverage": {
+    "status": "partial",
+    "meaning": "当前文件已沉淀通用推导规则，并对已重点讨论的破竹·鸢与裂石·威写出完整部位推荐。其他 benchmark 先由通用规则实时推导，后续逐个校验后可补进 derivedBenchmarks。"
+  }
+}

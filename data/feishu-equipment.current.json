@@ -1,0 +1,2262 @@
+{
+  "version": 1,
+  "source": "feishu-sheet-screenshot",
+  "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+  "sheetId": "jeHt54",
+  "sheetName": "燕云毕业装备记录",
+  "importedAt": "2026-09-12T07:51:23.949Z",
+  "itemCount": 31,
+  "summary": {
+    "bySlot": {
+      "环": 5,
+      "佩": 5,
+      "头": 5,
+      "衣服": 5,
+      "胫甲": 5,
+      "腕甲": 6
+    },
+    "byTerm": {
+      "大外": 25,
+      "全武": 10,
+      "敏": 13,
+      "劲": 13,
+      "外功穿透": 9,
+      "大裂石": 4,
+      "精准": 7,
+      "会心": 24,
+      "大破竹": 6,
+      "天志垂象·蓄力技增伤": 4,
+      "单体奇术增伤": 5,
+      "小外": 18,
+      "千香引魂盅·武学技增疗": 2,
+      "首领": 9,
+      "十方破阵·蓄力技增伤": 5,
+      "八方风雷枪·特殊技增伤": 1,
+      "嗟夫刀法·特殊技增伤": 1,
+      "小牵丝": 2,
+      "小鸣金": 1,
+      "小裂石": 2,
+      "大牵丝": 2,
+      "斩雪刀法·武学技增伤": 1,
+      "斩雪刀法·蓄力技增伤": 1,
+      "会意": 6,
+      "势": 3,
+      "积矩九剑·特殊技增伤": 1,
+      "大鸣金": 3,
+      "积矩九剑·流血增伤": 2,
+      "积矩九剑·武学技增伤": 1,
+      "无相穿透": 1,
+      "玩家增": 2,
+      "明川药典·特殊技增疗": 1,
+      "明川药典·武学技增疗": 1
+    }
+  },
+  "notes": [
+    "由飞书表格嵌入截图人工 OCR 结构化导入。",
+    "截图只显示词条，不显示装备原始名称，因此 displayName 使用 飞书-方向-部位。",
+    "最后一行定音词条写入 pitch，不参与评分。"
+  ],
+  "items": [
+    {
+      "id": "feishu-r3_b",
+      "sourceIndex": 0,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r3B",
+      "direction": "大外",
+      "rawEquipmentKey": "FEISHU_r3_B",
+      "slot": "环",
+      "displayName": "飞书-大外-环",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外",
+          "name": "大外"
+        }
+      ],
+      "rawTerms": [
+        "最大外功攻击",
+        "全武学增效",
+        "敏",
+        "最大外功攻击",
+        "[转]劲"
+      ]
+    },
+    {
+      "id": "feishu-r3_c",
+      "sourceIndex": 1,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r3C",
+      "direction": "大外",
+      "rawEquipmentKey": "FEISHU_r3_C",
+      "slot": "佩",
+      "displayName": "飞书-大外-佩",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "大裂石",
+          "name": "大裂石",
+          "value": null,
+          "rawName": "最大裂石攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外",
+          "name": "大外"
+        }
+      ],
+      "rawTerms": [
+        "最大外功攻击",
+        "最大外功攻击",
+        "全武学增效",
+        "敏",
+        "[转]最大裂石攻击"
+      ]
+    },
+    {
+      "id": "feishu-r3_d",
+      "sourceIndex": 2,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r3D",
+      "direction": "大外",
+      "rawEquipmentKey": "FEISHU_r3_D",
+      "slot": "头",
+      "displayName": "飞书-大外-头",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "精准",
+          "name": "精准",
+          "value": null,
+          "rawName": "精准率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "精准",
+          "name": "精准",
+          "value": null,
+          "rawName": "精准率"
+        },
+        {
+          "key": "大破竹",
+          "name": "大破竹",
+          "value": null,
+          "rawName": "最大破竹攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "天志垂象·蓄力技增伤",
+          "name": "天志垂象·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外",
+          "name": "大外"
+        }
+      ],
+      "rawTerms": [
+        "精准率",
+        "最大外功攻击",
+        "[转]会心率",
+        "精准率",
+        "最大破竹攻击"
+      ]
+    },
+    {
+      "id": "feishu-r3_e",
+      "sourceIndex": 3,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r3E",
+      "direction": "大外",
+      "rawEquipmentKey": "FEISHU_r3_E",
+      "slot": "衣服",
+      "displayName": "飞书-大外-衣服",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "单体奇术增伤",
+          "name": "单体奇术增伤",
+          "value": null,
+          "rawName": "单体类奇术增伤"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "千香引魂盅·武学技增疗",
+          "name": "千香引魂盅·武学技增疗",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外",
+          "name": "大外"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "单体类奇术增伤",
+        "最小外功攻击",
+        "[转]最大外功攻击",
+        "劲"
+      ]
+    },
+    {
+      "id": "feishu-r3_f",
+      "sourceIndex": 4,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r3F",
+      "direction": "大外",
+      "rawEquipmentKey": "FEISHU_r3_F",
+      "slot": "胫甲",
+      "displayName": "飞书-大外-胫甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "精准",
+          "name": "精准",
+          "value": null,
+          "rawName": "精准率"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "天志垂象·蓄力技增伤",
+          "name": "天志垂象·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外",
+          "name": "大外"
+        }
+      ],
+      "rawTerms": [
+        "劲",
+        "[转]最大外功攻击",
+        "精准率",
+        "会心率",
+        "对首领单位增伤"
+      ]
+    },
+    {
+      "id": "feishu-r3_g",
+      "sourceIndex": 5,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r3G",
+      "direction": "大外",
+      "rawEquipmentKey": "FEISHU_r3_G",
+      "slot": "腕甲",
+      "displayName": "飞书-大外-腕甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "十方破阵·蓄力技增伤",
+          "name": "十方破阵·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外",
+          "name": "大外"
+        }
+      ],
+      "rawTerms": [
+        "劲",
+        "最大外功攻击",
+        "会心率",
+        "对首领单位增伤",
+        "最小外功攻击"
+      ]
+    },
+    {
+      "id": "feishu-r4_b",
+      "sourceIndex": 6,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r4B",
+      "direction": "大外2/治疗",
+      "rawEquipmentKey": "FEISHU_r4_B",
+      "slot": "环",
+      "displayName": "飞书-大外2/治疗-环",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外2/治疗",
+          "name": "大外2/治疗"
+        }
+      ],
+      "rawTerms": [
+        "最大外功攻击",
+        "会心率",
+        "最小外功攻击",
+        "全武学增效",
+        "[转]劲"
+      ]
+    },
+    {
+      "id": "feishu-r4_c",
+      "sourceIndex": 7,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r4C",
+      "direction": "大外2",
+      "rawEquipmentKey": "FEISHU_r4_C",
+      "slot": "佩",
+      "displayName": "飞书-大外2-佩",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "大破竹",
+          "name": "大破竹",
+          "value": null,
+          "rawName": "最大破竹攻击"
+        },
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外2",
+          "name": "大外2"
+        }
+      ],
+      "rawTerms": [
+        "最大外功攻击",
+        "[转]最大外功攻击",
+        "会心率",
+        "最大破竹攻击",
+        "全武学增效"
+      ]
+    },
+    {
+      "id": "feishu-r4_d",
+      "sourceIndex": 8,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r4D",
+      "direction": "大外2",
+      "rawEquipmentKey": "FEISHU_r4_D",
+      "slot": "头",
+      "displayName": "飞书-大外2-头",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "单体奇术增伤",
+          "name": "单体奇术增伤",
+          "value": null,
+          "rawName": "单体类奇术增伤"
+        },
+        {
+          "key": "精准",
+          "name": "精准",
+          "value": null,
+          "rawName": "精准率"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "八方风雷枪·特殊技增伤",
+          "name": "八方风雷枪·特殊技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外2",
+          "name": "大外2"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "单体类奇术增伤",
+        "精准率",
+        "敏",
+        "[转]劲"
+      ]
+    },
+    {
+      "id": "feishu-r4_e",
+      "sourceIndex": 9,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r4E",
+      "direction": "大外2",
+      "rawEquipmentKey": "FEISHU_r4_E",
+      "slot": "衣服",
+      "displayName": "飞书-大外2-衣服",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "大破竹",
+          "name": "大破竹",
+          "value": null,
+          "rawName": "最大破竹攻击"
+        },
+        {
+          "key": "单体奇术增伤",
+          "name": "单体奇术增伤",
+          "value": null,
+          "rawName": "单体类奇术增伤"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "天志垂象·蓄力技增伤",
+          "name": "天志垂象·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外2",
+          "name": "大外2"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "[转]敏",
+        "最大破竹攻击",
+        "单体类奇术增伤",
+        "会心率"
+      ]
+    },
+    {
+      "id": "feishu-r4_g",
+      "sourceIndex": 10,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r4G",
+      "direction": "大外2",
+      "rawEquipmentKey": "FEISHU_r4_G",
+      "slot": "腕甲",
+      "displayName": "飞书-大外2-腕甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "大裂石",
+          "name": "大裂石",
+          "value": null,
+          "rawName": "最大裂石攻击"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "嗟夫刀法·特殊技增伤",
+          "name": "嗟夫刀法·特殊技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "大外2",
+          "name": "大外2"
+        }
+      ],
+      "rawTerms": [
+        "劲",
+        "最大外功攻击",
+        "[转]会心率",
+        "最大裂石攻击",
+        "对首领单位增伤"
+      ]
+    },
+    {
+      "id": "feishu-r6_b",
+      "sourceIndex": 11,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r6B",
+      "direction": "小外",
+      "rawEquipmentKey": "FEISHU_r6_B",
+      "slot": "环",
+      "displayName": "飞书-小外-环",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "小牵丝",
+          "name": "小牵丝",
+          "value": null,
+          "rawName": "最小牵丝攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外",
+          "name": "小外"
+        }
+      ],
+      "rawTerms": [
+        "最小外功攻击",
+        "全武学增效",
+        "[转]敏",
+        "最小外功攻击",
+        "最小牵丝攻击"
+      ]
+    },
+    {
+      "id": "feishu-r6_c",
+      "sourceIndex": 12,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r6C",
+      "direction": "小外",
+      "rawEquipmentKey": "FEISHU_r6_C",
+      "slot": "佩",
+      "displayName": "飞书-小外-佩",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "小鸣金",
+          "name": "小鸣金",
+          "value": null,
+          "rawName": "最小鸣金攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外",
+          "name": "小外"
+        }
+      ],
+      "rawTerms": [
+        "最小外功攻击",
+        "[转]最小外功攻击",
+        "全武学增效",
+        "敏",
+        "最小鸣金攻击"
+      ]
+    },
+    {
+      "id": "feishu-r6_d",
+      "sourceIndex": 13,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r6D",
+      "direction": "小外",
+      "rawEquipmentKey": "FEISHU_r6_D",
+      "slot": "头",
+      "displayName": "飞书-小外-头",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "精准",
+          "name": "精准",
+          "value": null,
+          "rawName": "精准率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "小牵丝",
+          "name": "小牵丝",
+          "value": null,
+          "rawName": "最小牵丝攻击"
+        },
+        {
+          "key": "小裂石",
+          "name": "小裂石",
+          "value": null,
+          "rawName": "最小裂石攻击"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "十方破阵·蓄力技增伤",
+          "name": "十方破阵·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外",
+          "name": "小外"
+        }
+      ],
+      "rawTerms": [
+        "精准率",
+        "[转]敏",
+        "最小牵丝攻击",
+        "最小裂石攻击",
+        "最小外功攻击"
+      ]
+    },
+    {
+      "id": "feishu-r6_e",
+      "sourceIndex": 14,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r6E",
+      "direction": "小外",
+      "rawEquipmentKey": "FEISHU_r6_E",
+      "slot": "衣服",
+      "displayName": "飞书-小外-衣服",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大裂石",
+          "name": "大裂石",
+          "value": null,
+          "rawName": "最大裂石攻击"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "十方破阵·蓄力技增伤",
+          "name": "十方破阵·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外",
+          "name": "小外"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "最大裂石攻击",
+        "[转]最小外功攻击",
+        "会心率",
+        "敏"
+      ]
+    },
+    {
+      "id": "feishu-r6_f",
+      "sourceIndex": 15,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r6F",
+      "direction": "小外",
+      "rawEquipmentKey": "FEISHU_r6_F",
+      "slot": "胫甲",
+      "displayName": "飞书-小外-胫甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "大牵丝",
+          "name": "大牵丝",
+          "value": null,
+          "rawName": "最大牵丝攻击"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "十方破阵·蓄力技增伤",
+          "name": "十方破阵·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外",
+          "name": "小外"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "对首领单位增伤",
+        "敏",
+        "最大牵丝攻击",
+        "[转]最小外功攻击"
+      ]
+    },
+    {
+      "id": "feishu-r6_g",
+      "sourceIndex": 16,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r6G",
+      "direction": "小外",
+      "rawEquipmentKey": "FEISHU_r6_G",
+      "slot": "腕甲",
+      "displayName": "飞书-小外-腕甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "小裂石",
+          "name": "小裂石",
+          "value": null,
+          "rawName": "最小裂石攻击"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "十方破阵·蓄力技增伤",
+          "name": "十方破阵·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外",
+          "name": "小外"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "[转]敏",
+        "最小裂石攻击",
+        "对首领单位增伤",
+        "最小外功攻击"
+      ]
+    },
+    {
+      "id": "feishu-r7_b",
+      "sourceIndex": 17,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r7B",
+      "direction": "小外2",
+      "rawEquipmentKey": "FEISHU_r7_B",
+      "slot": "环",
+      "displayName": "飞书-小外2-环",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "大裂石",
+          "name": "大裂石",
+          "value": null,
+          "rawName": "最大裂石攻击"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外2",
+          "name": "小外2"
+        }
+      ],
+      "rawTerms": [
+        "最小外功攻击",
+        "全武学增效",
+        "最大裂石攻击",
+        "[转]最小外功攻击",
+        "会心率"
+      ]
+    },
+    {
+      "id": "feishu-r7_d",
+      "sourceIndex": 18,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r7D",
+      "direction": "小外2",
+      "rawEquipmentKey": "FEISHU_r7_D",
+      "slot": "头",
+      "displayName": "飞书-小外2-头",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "精准",
+          "name": "精准",
+          "value": null,
+          "rawName": "精准率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "大破竹",
+          "name": "大破竹",
+          "value": null,
+          "rawName": "最大破竹攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "天志垂象·蓄力技增伤",
+          "name": "天志垂象·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外2",
+          "name": "小外2"
+        }
+      ],
+      "rawTerms": [
+        "精准率",
+        "最小外功攻击",
+        "会心率",
+        "[转]敏",
+        "最大破竹攻击"
+      ]
+    },
+    {
+      "id": "feishu-r7_f",
+      "sourceIndex": 19,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r7F",
+      "direction": "小外2",
+      "rawEquipmentKey": "FEISHU_r7_F",
+      "slot": "胫甲",
+      "displayName": "飞书-小外2-胫甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "大破竹",
+          "name": "大破竹",
+          "value": null,
+          "rawName": "最大破竹攻击"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "斩雪刀法·武学技增伤",
+          "name": "斩雪刀法·武学技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外2",
+          "name": "小外2"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "最小外功攻击",
+        "最大破竹攻击",
+        "[转]敏",
+        "对首领单位增伤"
+      ]
+    },
+    {
+      "id": "feishu-r7_g",
+      "sourceIndex": 20,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r7G",
+      "direction": "小外2",
+      "rawEquipmentKey": "FEISHU_r7_G",
+      "slot": "腕甲",
+      "displayName": "飞书-小外2-腕甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "精准",
+          "name": "精准",
+          "value": null,
+          "rawName": "精准率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        },
+        {
+          "key": "敏",
+          "name": "敏",
+          "value": null,
+          "rawName": "敏"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "斩雪刀法·蓄力技增伤",
+          "name": "斩雪刀法·蓄力技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "小外2",
+          "name": "小外2"
+        }
+      ],
+      "rawTerms": [
+        "精准率",
+        "最小外功攻击",
+        "对首领单位增伤",
+        "[转]敏",
+        "会心率"
+      ]
+    },
+    {
+      "id": "feishu-r9_b",
+      "sourceIndex": 21,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r9B",
+      "direction": "会意",
+      "rawEquipmentKey": "FEISHU_r9_B",
+      "slot": "环",
+      "displayName": "飞书-会意-环",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        },
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "大破竹",
+          "name": "大破竹",
+          "value": null,
+          "rawName": "最大破竹攻击"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "会意",
+          "name": "会意"
+        }
+      ],
+      "rawTerms": [
+        "最大外功攻击",
+        "[转]劲",
+        "全武学增效",
+        "最大破竹攻击",
+        "最大外功攻击"
+      ]
+    },
+    {
+      "id": "feishu-r9_c",
+      "sourceIndex": 22,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r9C",
+      "direction": "会意",
+      "rawEquipmentKey": "FEISHU_r9_C",
+      "slot": "佩",
+      "displayName": "飞书-会意-佩",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "会意",
+          "name": "会意",
+          "value": null,
+          "rawName": "会意率"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "势",
+          "name": "势",
+          "value": null,
+          "rawName": "势"
+        },
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "外功穿透",
+          "name": "外功穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "会意",
+          "name": "会意"
+        }
+      ],
+      "rawTerms": [
+        "最大外功攻击",
+        "[转]会意率",
+        "最大外功攻击",
+        "势",
+        "全武学增效"
+      ]
+    },
+    {
+      "id": "feishu-r9_d",
+      "sourceIndex": 23,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r9D",
+      "direction": "会意",
+      "rawEquipmentKey": "FEISHU_r9_D",
+      "slot": "头",
+      "displayName": "飞书-会意-头",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会意",
+          "name": "会意",
+          "value": null,
+          "rawName": "会意率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "单体奇术增伤",
+          "name": "单体奇术增伤",
+          "value": null,
+          "rawName": "单体类奇术增伤"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "会意",
+          "name": "会意",
+          "value": null,
+          "rawName": "会意率"
+        },
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "积矩九剑·特殊技增伤",
+          "name": "积矩九剑·特殊技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "会意",
+          "name": "会意"
+        }
+      ],
+      "rawTerms": [
+        "会意率",
+        "单体类奇术增伤",
+        "最大外功攻击",
+        "会意率",
+        "[转]劲"
+      ]
+    },
+    {
+      "id": "feishu-r9_e",
+      "sourceIndex": 24,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r9E",
+      "direction": "会意",
+      "rawEquipmentKey": "FEISHU_r9_E",
+      "slot": "衣服",
+      "displayName": "飞书-会意-衣服",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会意",
+          "name": "会意",
+          "value": null,
+          "rawName": "会意率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "会意",
+          "name": "会意",
+          "value": null,
+          "rawName": "会意率"
+        },
+        {
+          "key": "大鸣金",
+          "name": "大鸣金",
+          "value": null,
+          "rawName": "最大鸣金攻击"
+        },
+        {
+          "key": "势",
+          "name": "势",
+          "value": null,
+          "rawName": "势"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "积矩九剑·流血增伤",
+          "name": "积矩九剑·流血增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "会意",
+          "name": "会意"
+        }
+      ],
+      "rawTerms": [
+        "会意率",
+        "[转]会意率",
+        "最大鸣金攻击",
+        "势",
+        "最大外功攻击"
+      ]
+    },
+    {
+      "id": "feishu-r9_f",
+      "sourceIndex": 25,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r9F",
+      "direction": "会意",
+      "rawEquipmentKey": "FEISHU_r9_F",
+      "slot": "胫甲",
+      "displayName": "飞书-会意-胫甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "大鸣金",
+          "name": "大鸣金",
+          "value": null,
+          "rawName": "最大鸣金攻击"
+        },
+        {
+          "key": "会意",
+          "name": "会意",
+          "value": null,
+          "rawName": "会意率"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "积矩九剑·武学技增伤",
+          "name": "积矩九剑·武学技增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "会意",
+          "name": "会意"
+        }
+      ],
+      "rawTerms": [
+        "劲",
+        "[转]最大外功攻击",
+        "最大鸣金攻击",
+        "会意率",
+        "对首领单位增伤"
+      ]
+    },
+    {
+      "id": "feishu-r9_g",
+      "sourceIndex": 26,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r9G",
+      "direction": "会意",
+      "rawEquipmentKey": "FEISHU_r9_G",
+      "slot": "腕甲",
+      "displayName": "飞书-会意-腕甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        },
+        {
+          "key": "首领",
+          "name": "首领",
+          "value": null,
+          "rawName": "对首领单位增伤"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "势",
+          "name": "势",
+          "value": null,
+          "rawName": "势"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "积矩九剑·流血增伤",
+          "name": "积矩九剑·流血增伤",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "会意",
+          "name": "会意"
+        }
+      ],
+      "rawTerms": [
+        "劲",
+        "劲",
+        "对首领单位增伤",
+        "[转]最大外功攻击",
+        "势"
+      ]
+    },
+    {
+      "id": "feishu-r10_c",
+      "sourceIndex": 27,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r10C",
+      "direction": "会意2",
+      "rawEquipmentKey": "FEISHU_r10_C",
+      "slot": "佩",
+      "displayName": "飞书-会意2-佩",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大鸣金",
+          "name": "大鸣金",
+          "value": null,
+          "rawName": "最大鸣金攻击"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "全武",
+          "name": "全武",
+          "value": null,
+          "rawName": "全武学增效"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "无相穿透",
+          "name": "无相穿透",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "会意2",
+          "name": "会意2"
+        }
+      ],
+      "rawTerms": [
+        "最大外功攻击",
+        "最大鸣金攻击",
+        "[转]会心率",
+        "全武学增效",
+        "最大外功攻击"
+      ]
+    },
+    {
+      "id": "feishu-r11_e",
+      "sourceIndex": 28,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r11E",
+      "direction": "治疗/火拳奶",
+      "rawEquipmentKey": "FEISHU_r11_E",
+      "slot": "衣服",
+      "displayName": "飞书-治疗/火拳奶-衣服",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "单体奇术增伤",
+          "name": "单体奇术增伤",
+          "value": null,
+          "rawName": "单体类奇术增伤"
+        },
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "劲",
+          "name": "劲",
+          "value": null,
+          "rawName": "劲"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "千香引魂盅·武学技增疗",
+          "name": "千香引魂盅·武学技增疗",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "治疗/火拳奶",
+          "name": "治疗/火拳奶"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "单体类奇术增伤",
+        "最小外功攻击",
+        "[转]最大外功攻击",
+        "劲"
+      ]
+    },
+    {
+      "id": "feishu-r11_f",
+      "sourceIndex": 29,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r11F",
+      "direction": "治疗",
+      "rawEquipmentKey": "FEISHU_r11_F",
+      "slot": "胫甲",
+      "displayName": "飞书-治疗-胫甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "玩家增",
+          "name": "玩家增",
+          "value": null,
+          "rawName": "对玩家单位增效"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        },
+        {
+          "key": "大牵丝",
+          "name": "大牵丝",
+          "value": null,
+          "rawName": "最大牵丝攻击"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "明川药典·特殊技增疗",
+          "name": "明川药典·特殊技增疗",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "治疗",
+          "name": "治疗"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "最大外功攻击",
+        "对玩家单位增效",
+        "[转]会心率",
+        "最大牵丝攻击"
+      ]
+    },
+    {
+      "id": "feishu-r11_g",
+      "sourceIndex": 30,
+      "source": "feishu-sheet-screenshot",
+      "sourceUrl": "https://my.feishu.cn/sheets/shtcnwhNN0MGBYCgceNcKKlZ2hb?sheet=jeHt54",
+      "sourceCell": "r11G",
+      "direction": "治疗",
+      "rawEquipmentKey": "FEISHU_r11_G",
+      "slot": "腕甲",
+      "displayName": "飞书-治疗-腕甲",
+      "quality": "金",
+      "type": "armor",
+      "isChengyin": false,
+      "baseAttrs": [],
+      "firstTuning": [
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "小外",
+          "name": "小外",
+          "value": null,
+          "rawName": "最小外功攻击"
+        },
+        {
+          "key": "大外",
+          "name": "大外",
+          "value": null,
+          "rawName": "最大外功攻击"
+        },
+        {
+          "key": "玩家增",
+          "name": "玩家增",
+          "value": null,
+          "rawName": "对玩家单位增效"
+        },
+        {
+          "key": "会心",
+          "name": "会心",
+          "value": null,
+          "rawName": "会心率"
+        }
+      ],
+      "pitch": [
+        {
+          "key": "明川药典·武学技增疗",
+          "name": "明川药典·武学技增疗",
+          "value": null
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "治疗",
+          "name": "治疗"
+        }
+      ],
+      "rawTerms": [
+        "会心率",
+        "最小外功攻击",
+        "最大外功攻击",
+        "对玩家单位增效",
+        "[转]会心率"
+      ]
+    }
+  ]
+}

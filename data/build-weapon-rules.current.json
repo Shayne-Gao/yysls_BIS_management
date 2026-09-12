@@ -1,0 +1,243 @@
+{
+  "version": 1,
+  "description": "流派可用武器规则。用于防止武器装备被推荐给不能使用该武器的流派。",
+  "sourceNotes": [
+    "破竹·鸢已通过用户确认和公开攻略确认：手甲主武器，绳镖副武器。",
+    "裂石·钧已由用户确认：横刀与陌刀，按方案区分双切/纯横刀。",
+    "裂石·威公开资料确认陌刀与长枪。",
+    "牵丝·玉、牵丝·霖公开资料确认伞与扇。",
+    "鸣金·虹、鸣金·影公开资料确认剑与枪。",
+    "破竹·尘公开资料确认伞与绳镖。",
+    "破竹·风当前按 benchmark 中双刀/绳镖词条推断，后续可用用户确认资料修正。"
+  ],
+  "weaponTermToSlot": {
+    "手甲": "手甲",
+    "陌刀": "陌刀",
+    "唐刀": "横刀",
+    "横刀": "横刀",
+    "刀": "横刀",
+    "双刀": "双刀",
+    "绳镖": "绳镖",
+    "剑增": "剑",
+    "剑": "剑",
+    "伞增": "伞",
+    "伞": "伞",
+    "鼓增": "鼓",
+    "鼓": "鼓",
+    "扇增": "扇",
+    "扇": "扇"
+  },
+  "buildWeapons": {
+    "破竹·鸢": {
+      "mainWeapon": "手甲",
+      "secondaryWeapon": "绳镖",
+      "allowedWeapons": [
+        "手甲",
+        "绳镖"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "用户确认：破竹·鸢主武器手甲，副武器绳镖",
+        "https://news.17173.com/content/11232025/181445489.shtml",
+        "https://www.3dmgame.com/gl/3976329.html"
+      ]
+    },
+    "裂石·钧": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "横刀",
+      "allowedWeapons": [
+        "陌刀",
+        "横刀",
+        "刀"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "用户确认：裂石·钧是横刀 + 陌刀",
+        "https://www.9game.cn/yyslskfsjwx/11791237.html",
+        "https://www.oslink.io/tw/blog/guide/where-winds-meet-stonesplit-might-guide.html"
+      ]
+    },
+    "裂石·威": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "枪",
+      "allowedWeapons": [
+        "陌刀",
+        "枪"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "https://16yanyun.com/gameguide/yanyun-lieshiwei-school-build-guide"
+      ]
+    },
+    "破竹·尘": {
+      "mainWeapon": "伞",
+      "secondaryWeapon": "绳镖",
+      "allowedWeapons": [
+        "伞",
+        "绳镖"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "https://shike.it168.com/news/25529.html",
+        "https://wherewindsmeetcalculator.com/build/bamboocut-dust"
+      ]
+    },
+    "破竹·风": {
+      "mainWeapon": "双刀",
+      "secondaryWeapon": "绳镖",
+      "allowedWeapons": [
+        "双刀",
+        "绳镖"
+      ],
+      "confidence": "inferred_from_benchmark",
+      "sources": [
+        "当前 benchmark 词条包含双刀与绳镖"
+      ]
+    },
+    "牵丝·玉": {
+      "mainWeapon": "伞",
+      "secondaryWeapon": "扇",
+      "allowedWeapons": [
+        "伞",
+        "扇"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "https://www.gamersky.com/handbook/202512/2069217.shtml",
+        "https://16yanyun.com/gameguide/yanyun-qiansiyu-build-guide-strategy"
+      ]
+    },
+    "牵丝·霖": {
+      "mainWeapon": "伞",
+      "secondaryWeapon": "扇",
+      "allowedWeapons": [
+        "伞",
+        "扇"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "https://www.gamersky.com/handbook/202512/2069217.shtml",
+        "https://m.tea1860.com/article/163149.html"
+      ]
+    },
+    "牵丝·翎": {
+      "mainWeapon": "鼓",
+      "secondaryWeapon": null,
+      "allowedWeapons": [
+        "鼓"
+      ],
+      "confidence": "inferred_from_benchmark",
+      "sources": [
+        "当前 benchmark 词条包含鼓增"
+      ]
+    },
+    "鸣金·虹": {
+      "mainWeapon": "剑",
+      "secondaryWeapon": "枪",
+      "allowedWeapons": [
+        "剑",
+        "枪"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "https://news.17173.com/content/10222025/154704141.shtml",
+        "https://m.tc98.com/article/42486.html"
+      ]
+    },
+    "鸣金·影": {
+      "mainWeapon": "剑",
+      "secondaryWeapon": "枪",
+      "allowedWeapons": [
+        "剑",
+        "枪"
+      ],
+      "confidence": "confirmed",
+      "sources": [
+        "https://www.wwmjianghu.com/en/builds/mingjin-ying",
+        "https://m.921syw.com/jxsygl/213448.html"
+      ]
+    }
+  },
+  "benchmarkOverrides": {
+    "xiaowai_lieshi_jun_duanyue_shuangqie_01": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "横刀",
+      "allowedWeapons": [
+        "陌刀",
+        "横刀",
+        "刀"
+      ],
+      "confidence": "confirmed"
+    },
+    "xiaowai_lieshi_jun_duanyue_shuangqie_02": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "横刀",
+      "allowedWeapons": [
+        "陌刀",
+        "横刀",
+        "刀"
+      ],
+      "confidence": "confirmed"
+    },
+    "xiaowai_lieshi_jun_duanyue_shuangqie_03": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "横刀",
+      "allowedWeapons": [
+        "陌刀",
+        "横刀",
+        "刀"
+      ],
+      "confidence": "confirmed"
+    },
+    "xiaowai_lieshi_jun_duanyue_shuangqie_04": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "横刀",
+      "allowedWeapons": [
+        "陌刀",
+        "横刀",
+        "刀"
+      ],
+      "confidence": "confirmed"
+    },
+    "xiaowai_lieshi_jun_duanyue_chuntang_01": {
+      "mainWeapon": "横刀",
+      "secondaryWeapon": "陌刀",
+      "allowedWeapons": [
+        "横刀",
+        "刀",
+        "陌刀"
+      ],
+      "confidence": "confirmed"
+    },
+    "dawai_lieshi_jun_duanyue_shuangqie_01": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "横刀",
+      "allowedWeapons": [
+        "陌刀",
+        "横刀",
+        "刀"
+      ],
+      "confidence": "confirmed"
+    },
+    "dawai_lieshi_jun_duanyue_shuangqie_02": {
+      "mainWeapon": "陌刀",
+      "secondaryWeapon": "横刀",
+      "allowedWeapons": [
+        "陌刀",
+        "横刀",
+        "刀"
+      ],
+      "confidence": "confirmed"
+    },
+    "dawai_lieshi_jun_duanyue_chuntang_01": {
+      "mainWeapon": "横刀",
+      "secondaryWeapon": "陌刀",
+      "allowedWeapons": [
+        "横刀",
+        "刀",
+        "陌刀"
+      ],
+      "confidence": "confirmed"
+    }
+  }
+}

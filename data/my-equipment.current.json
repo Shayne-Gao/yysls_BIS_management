@@ -1,0 +1,3556 @@
+{
+  "version": 1,
+  "source": "yysls-assistant",
+  "sourceFile": "灵镜-装备导出-2026-09-12.txt",
+  "importedAt": "2026-09-12T06:06:09.921Z",
+  "exportedAt": "2026-09-12T05:48:50.749Z",
+  "roleName": "灵镜",
+  "schemaVersion": 2,
+  "itemCount": 42,
+  "summary": {
+    "bySlot": {
+      "刀": 1,
+      "佩": 5,
+      "头": 5,
+      "衣服": 7,
+      "腕甲": 6,
+      "绳镖": 1,
+      "环": 5,
+      "胫甲": 6,
+      "手甲": 3,
+      "枪": 1,
+      "陌刀": 1,
+      "双刀": 1
+    },
+    "byTerm": {
+      "小外": 38,
+      "大无相": 6,
+      "敏": 26,
+      "会心": 34,
+      "小裂石": 9,
+      "大外": 18,
+      "精准": 18,
+      "小牵丝": 3,
+      "大裂石": 11,
+      "劲": 8,
+      "全武": 7,
+      "大破竹": 8,
+      "首领": 10,
+      "手甲": 1,
+      "单体奇术增伤": 4,
+      "会意": 2,
+      "群体奇术增伤": 1,
+      "势": 1,
+      "小鸣金": 2,
+      "陌刀": 1,
+      "大牵丝": 1,
+      "双刀": 1
+    },
+    "byBuildTag": {
+      "裂石·钧": 11,
+      "裂石·威": 12,
+      "POZHU_ZUN": 8,
+      "破竹·鸢": 10
+    }
+  },
+  "items": [
+    {
+      "id": "eq-001",
+      "sourceIndex": 0,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_BLADE",
+      "slot": "刀",
+      "displayName": "110",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_WUXIANG_ATTACK",
+          "name": "大无相",
+          "value": 61.8
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 16.6
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "大外"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "只穿毕业的"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "小外": 2,
+        "大无相": 1,
+        "敏": 1,
+        "会心": 1
+      }
+    },
+    {
+      "id": "eq-002",
+      "sourceIndex": 1,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_PENDANT",
+      "slot": "佩",
+      "displayName": "105",
+      "quality": "金",
+      "type": "pendant",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 199
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 101.9
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 42.6
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 54.5
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 105.6
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 105.6
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 13.4
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "大外"
+        }
+      ],
+      "termCounts": {
+        "小外": 2,
+        "小裂石": 1,
+        "敏": 1,
+        "大外": 1
+      }
+    },
+    {
+      "id": "eq-003",
+      "sourceIndex": 2,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HEAD",
+      "slot": "头",
+      "displayName": "吴钩霜冠",
+      "quality": "金",
+      "type": "head",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "MIN_QIANSI_ATTACK",
+          "name": "小牵丝",
+          "value": 64.67
+        },
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 64.67
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 9.2
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        },
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        },
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "只穿毕业的"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        },
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "精准": 1,
+        "敏": 1,
+        "小牵丝": 1,
+        "小裂石": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-004",
+      "sourceIndex": 3,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_CLOTH",
+      "slot": "衣服",
+      "displayName": "105 补弓",
+      "quality": "金",
+      "type": "cloth",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 16449
+        },
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 10.2
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.6
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 66.8
+        },
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 45.1
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 87.6
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 7
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "精准": 1,
+        "会心": 1,
+        "敏": 1,
+        "大裂石": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-005",
+      "sourceIndex": 4,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HAND",
+      "slot": "腕甲",
+      "displayName": "105",
+      "quality": "金",
+      "type": "hand",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 10.7
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 55.8
+        },
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 55.8
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 105.6
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 9.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 6.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "会心": 2,
+        "小裂石": 1,
+        "大裂石": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-006",
+      "sourceIndex": 5,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_ROPE",
+      "slot": "绳镖",
+      "displayName": "绳镖105",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 58.3
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 62.7
+        },
+        {
+          "key": "MAX_WUXIANG_ATTACK",
+          "name": "大无相",
+          "value": 56.2
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 12.2
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 105.6
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 13.6
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        },
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "敏": 2,
+        "大无相": 1,
+        "会心": 1,
+        "大外": 1
+      }
+    },
+    {
+      "id": "eq-007",
+      "sourceIndex": 6,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_RING",
+      "slot": "环",
+      "displayName": "环 破竹",
+      "quality": "金",
+      "type": "ring",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 133
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 62.8
+        },
+        {
+          "key": "WUXUE_DAMAGE",
+          "name": "全武",
+          "value": 3.9
+        },
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 56.2
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 12.6
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "大外": 2,
+        "劲": 1,
+        "全武": 1,
+        "大破竹": 1
+      }
+    },
+    {
+      "id": "eq-008",
+      "sourceIndex": 7,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_SHOES",
+      "slot": "胫甲",
+      "displayName": "胫甲 大外传家",
+      "quality": "金",
+      "type": "shoe",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 58
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 62.8
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        },
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 10.1
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.5
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.1
+        }
+      ],
+      "pitch": [
+        {
+          "key": "TZCX_XLJZS",
+          "name": "特殊技增伤",
+          "value": 7.2
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        },
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "劲": 1,
+        "大外": 1,
+        "精准": 1,
+        "会心": 1,
+        "首领": 1
+      }
+    },
+    {
+      "id": "eq-009",
+      "sourceIndex": 8,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HAND",
+      "slot": "腕甲",
+      "displayName": "腕甲 承音破竹",
+      "quality": "金",
+      "type": "hand",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 62.8
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 56.2
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 62.8
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.1
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        }
+      ],
+      "pitch": [],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        },
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "劲": 1,
+        "大破竹": 1,
+        "敏": 1,
+        "首领": 1,
+        "大外": 1
+      }
+    },
+    {
+      "id": "eq-010",
+      "sourceIndex": 9,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HEAD",
+      "slot": "头",
+      "displayName": "头105",
+      "quality": "金",
+      "type": "head",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 9.5
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 98.4
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 12
+        },
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 8.5
+        },
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 58.4
+        }
+      ],
+      "pitch": [
+        {
+          "key": "TZCX_XLJZS",
+          "name": "特殊技增伤",
+          "value": 7.6
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        }
+      ],
+      "termCounts": {
+        "精准": 2,
+        "大外": 1,
+        "会心": 1,
+        "大破竹": 1
+      }
+    },
+    {
+      "id": "eq-011",
+      "sourceIndex": 10,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_CLOTH",
+      "slot": "衣服",
+      "displayName": "胸甲100 备",
+      "quality": "金",
+      "type": "cloth",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 16449
+        },
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 7.7
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 9
+        },
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 48.3
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 10.4
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 89
+        }
+      ],
+      "pitch": [
+        {
+          "key": "TZCX_XLJZS",
+          "name": "特殊技增伤",
+          "value": 6.7
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "会心": 2,
+        "精准": 1,
+        "大破竹": 1,
+        "大外": 1
+      }
+    },
+    {
+      "id": "eq-012",
+      "sourceIndex": 11,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_FIST",
+      "slot": "手甲",
+      "displayName": "拳 105",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 9.3
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.5
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        },
+        {
+          "key": "FIST_DAMAGE",
+          "name": "手甲",
+          "value": 8.1
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 13.7
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        },
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "大外": 2,
+        "精准": 1,
+        "会心": 1,
+        "手甲": 1
+      }
+    },
+    {
+      "id": "eq-013",
+      "sourceIndex": 12,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_PENDANT",
+      "slot": "佩",
+      "displayName": "佩 破竹",
+      "quality": "金",
+      "type": "pendant",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 199
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.5
+        },
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 56.2
+        },
+        {
+          "key": "WUXUE_DAMAGE",
+          "name": "全武",
+          "value": 3.9
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 13.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        },
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "最佳"
+        },
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        },
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "大外": 2,
+        "会心": 1,
+        "大破竹": 1,
+        "全武": 1
+      }
+    },
+    {
+      "id": "eq-014",
+      "sourceIndex": 13,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_CLOTH",
+      "slot": "衣服",
+      "displayName": "胸甲 105 奇术",
+      "quality": "金",
+      "type": "cloth",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 16449
+        },
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.3
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 60.5
+        },
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 56.1
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.4
+        },
+        {
+          "key": "SINGLEQS_DAMAGE",
+          "name": "单体奇术增伤",
+          "value": 13.4
+        }
+      ],
+      "pitch": [
+        {
+          "key": "TZCX_XLJZS",
+          "name": "特殊技增伤",
+          "value": 6.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        }
+      ],
+      "termCounts": {
+        "会心": 2,
+        "劲": 1,
+        "大破竹": 1,
+        "单体奇术增伤": 1
+      }
+    },
+    {
+      "id": "eq-015",
+      "sourceIndex": 14,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_RING",
+      "slot": "环",
+      "displayName": "环 大外传家",
+      "quality": "金",
+      "type": "ring",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 133
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.5
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 99.3
+        },
+        {
+          "key": "WUXUE_DAMAGE",
+          "name": "全武",
+          "value": 3.9
+        },
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 62.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 13
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "破竹鸢-默认方案"
+        },
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "大外": 1,
+        "会心": 1,
+        "小外": 1,
+        "全武": 1,
+        "劲": 1
+      }
+    },
+    {
+      "id": "eq-016",
+      "sourceIndex": 15,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HAND",
+      "slot": "腕甲",
+      "displayName": "腕甲 承音通用",
+      "quality": "金",
+      "type": "hand",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 62.8
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 99.3
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.5
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.1
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 99.3
+        }
+      ],
+      "pitch": [
+        {
+          "key": "TZCX_XLJZS",
+          "name": "特殊技增伤",
+          "value": 8
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "劲": 1,
+        "大外": 1,
+        "会心": 1,
+        "首领": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-017",
+      "sourceIndex": 16,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HEAD",
+      "slot": "头",
+      "displayName": "头 105 备",
+      "quality": "金",
+      "type": "head",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 8.2
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 101.4
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 12
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 66.8
+        },
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 59.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "TZCX_XLJZS",
+          "name": "特殊技增伤",
+          "value": 6.7
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "POZHU_YUAN",
+          "name": "破竹·鸢"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_YUAN",
+          "planName": "大外最佳"
+        }
+      ],
+      "termCounts": {
+        "精准": 1,
+        "小外": 1,
+        "会心": 1,
+        "敏": 1,
+        "大破竹": 1
+      }
+    },
+    {
+      "id": "eq-018",
+      "sourceIndex": 17,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HAND",
+      "slot": "腕甲",
+      "displayName": "腕 紫 神力小外",
+      "quality": "紫",
+      "type": "hand",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 7402
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 27
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 64.67
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.79
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 9.2
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        },
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "大外"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "只穿毕业的"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "会心": 1,
+        "敏": 1,
+        "小裂石": 1,
+        "首领": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-019",
+      "sourceIndex": 18,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_SPEAR",
+      "slot": "枪",
+      "displayName": "枪 110没培养",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 76.4
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 88.7
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 10.9
+        },
+        {
+          "key": "MAX_WUXIANG_ATTACK",
+          "name": "大无相",
+          "value": 57.7
+        },
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 66.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 17
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "最佳"
+        }
+      ],
+      "termCounts": {
+        "大外": 2,
+        "会心": 1,
+        "大无相": 1,
+        "劲": 1
+      }
+    },
+    {
+      "id": "eq-020",
+      "sourceIndex": 19,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_CLOTH",
+      "slot": "衣服",
+      "displayName": "衣 vv",
+      "quality": "金",
+      "type": "cloth",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 16449
+        },
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 12.4
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 114.5
+        },
+        {
+          "key": "INSIGHT_RATE",
+          "name": "会意",
+          "value": 7
+        },
+        {
+          "key": "AOEQS_DAMAGE",
+          "name": "群体奇术增伤",
+          "value": 12.2
+        },
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 68.2
+        }
+      ],
+      "pitch": [
+        {
+          "key": "JFDF_XLJZS",
+          "name": "技法/定音增伤",
+          "value": 9.2
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "最佳"
+        }
+      ],
+      "termCounts": {
+        "精准": 1,
+        "大外": 1,
+        "会意": 1,
+        "群体奇术增伤": 1,
+        "小裂石": 1
+      }
+    },
+    {
+      "id": "eq-021",
+      "sourceIndex": 20,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_SHOES",
+      "slot": "胫甲",
+      "displayName": "吴钩霜缚袴",
+      "quality": "金",
+      "type": "shoe",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 58
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 9.5
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 50.3
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 12.2
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 96.8
+        },
+        {
+          "key": "SHI",
+          "name": "势",
+          "value": 66.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "JFDF_XLJZS",
+          "name": "技法/定音增伤",
+          "value": 6.7
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "最佳"
+        }
+      ],
+      "termCounts": {
+        "会心": 2,
+        "大裂石": 1,
+        "大外": 1,
+        "势": 1
+      }
+    },
+    {
+      "id": "eq-022",
+      "sourceIndex": 21,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HAND",
+      "slot": "腕甲",
+      "displayName": "吴钩霜披膊",
+      "quality": "金",
+      "type": "hand",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "JIN",
+          "name": "劲",
+          "value": 62
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 64.3
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.4
+        },
+        {
+          "key": "INSIGHT_RATE",
+          "name": "会意",
+          "value": 6.5
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.7
+        }
+      ],
+      "pitch": [
+        {
+          "key": "JFDF_XLJZS",
+          "name": "技法/定音增伤",
+          "value": 6.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "最佳"
+        }
+      ],
+      "termCounts": {
+        "劲": 1,
+        "大裂石": 1,
+        "会心": 1,
+        "会意": 1,
+        "首领": 1
+      }
+    },
+    {
+      "id": "eq-023",
+      "sourceIndex": 22,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HEAD",
+      "slot": "头",
+      "displayName": "吴钩霜冠",
+      "quality": "金",
+      "type": "head",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 11.6
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "SINGLEQS_DAMAGE",
+          "name": "单体奇术增伤",
+          "value": 13.4
+        },
+        {
+          "key": "MIN_QIANSI_ATTACK",
+          "name": "小牵丝",
+          "value": 43.7
+        },
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 56.3
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 105.6
+        }
+      ],
+      "pitch": [
+        {
+          "key": "JFDF_XLJZS",
+          "name": "技法/定音增伤",
+          "value": 7.6
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "最佳"
+        }
+      ],
+      "termCounts": {
+        "会心": 1,
+        "单体奇术增伤": 1,
+        "小牵丝": 1,
+        "大裂石": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-024",
+      "sourceIndex": 23,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_CLOTH",
+      "slot": "衣服",
+      "displayName": "承音紫",
+      "quality": "紫",
+      "type": "cloth",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 14804
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 27
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 64.67
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 9.2
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        },
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "大外"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        },
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "会心": 2,
+        "大裂石": 1,
+        "小外": 1,
+        "敏": 1
+      }
+    },
+    {
+      "id": "eq-025",
+      "sourceIndex": 24,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_CLOTH",
+      "slot": "衣服",
+      "displayName": "105奇术承音后",
+      "quality": "金",
+      "type": "cloth",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 16449
+        },
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "SINGLEQS_DAMAGE",
+          "name": "单体奇术增伤",
+          "value": 14.48
+        },
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 8.4
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "会心": 1,
+        "敏": 1,
+        "单体奇术增伤": 1,
+        "精准": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-026",
+      "sourceIndex": 25,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HEAD",
+      "slot": "头",
+      "displayName": "奇术头培养完",
+      "quality": "金",
+      "type": "head",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "SINGLEQS_DAMAGE",
+          "name": "单体奇术增伤",
+          "value": 14.48
+        },
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 8.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "大外"
+        }
+      ],
+      "termCounts": {
+        "会心": 1,
+        "单体奇术增伤": 1,
+        "精准": 1,
+        "敏": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-027",
+      "sourceIndex": 26,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_RING",
+      "slot": "环",
+      "displayName": "110满值无神",
+      "quality": "金",
+      "type": "ring",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 133
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 110
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 76.8
+        },
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 68
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 119.4
+        },
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 68.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 15.3
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        },
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "小外": 2,
+        "敏": 1,
+        "小裂石": 1,
+        "大裂石": 1
+      }
+    },
+    {
+      "id": "eq-028",
+      "sourceIndex": 27,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_CLOTH",
+      "slot": "衣服",
+      "displayName": "105培养完",
+      "quality": "金",
+      "type": "cloth",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 16449
+        },
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 64.67
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 7
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "只穿毕业的"
+        }
+      ],
+      "termCounts": {
+        "精准": 1,
+        "会心": 1,
+        "敏": 1,
+        "大裂石": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-029",
+      "sourceIndex": 28,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_RING",
+      "slot": "环",
+      "displayName": "105承音完转小外",
+      "quality": "金",
+      "type": "ring",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 133
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "WUXUE_DAMAGE",
+          "name": "全武",
+          "value": 4.61
+        },
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 64.67
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 15
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "最佳"
+        }
+      ],
+      "termCounts": {
+        "小外": 2,
+        "全武": 1,
+        "大裂石": 1,
+        "会心": 1
+      }
+    },
+    {
+      "id": "eq-030",
+      "sourceIndex": 29,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_PENDANT",
+      "slot": "佩",
+      "displayName": "105承音完",
+      "quality": "金",
+      "type": "pendant",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 199
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 64.67
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 64.67
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 13.4
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "小外": 2,
+        "小裂石": 1,
+        "敏": 1,
+        "大裂石": 1
+      }
+    },
+    {
+      "id": "eq-031",
+      "sourceIndex": 30,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_HAND",
+      "slot": "腕甲",
+      "displayName": "通用小外神",
+      "quality": "金",
+      "type": "hand",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 29
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.79
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 8.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "精准": 1,
+        "小外": 1,
+        "首领": 1,
+        "敏": 1,
+        "会心": 1
+      }
+    },
+    {
+      "id": "eq-032",
+      "sourceIndex": 31,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_PENDANT",
+      "slot": "佩",
+      "displayName": "110满神力",
+      "quality": "金",
+      "type": "pendant",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 199
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 117.8
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MAX_LIESHI_ATTACK",
+          "name": "大裂石",
+          "value": 68.8
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "WUXUE_DAMAGE",
+          "name": "全武",
+          "value": 4.9
+        },
+        {
+          "key": "MIN_MINGJIN_ATTACK",
+          "name": "小鸣金",
+          "value": 68.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 15.6
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        }
+      ],
+      "termCounts": {
+        "小外": 1,
+        "大裂石": 1,
+        "敏": 1,
+        "全武": 1,
+        "小鸣金": 1
+      }
+    },
+    {
+      "id": "eq-033",
+      "sourceIndex": 32,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_BIGBLADE",
+      "slot": "陌刀",
+      "displayName": "110调完",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "MAX_WUXIANG_ATTACK",
+          "name": "大无相",
+          "value": 64.67
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "BIGBLADE_DAMAGE",
+          "name": "陌刀",
+          "value": 9.21
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 16.7
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        },
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "小外": 2,
+        "敏": 1,
+        "大无相": 1,
+        "陌刀": 1
+      }
+    },
+    {
+      "id": "eq-034",
+      "sourceIndex": 33,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_PENDANT",
+      "slot": "佩",
+      "displayName": "110紫神力",
+      "quality": "紫",
+      "type": "pendant",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 179
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 111.6
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 121
+        },
+        {
+          "key": "WUXUE_DAMAGE",
+          "name": "全武",
+          "value": 4.8
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 75.9
+        },
+        {
+          "key": "MIN_MINGJIN_ATTACK",
+          "name": "小鸣金",
+          "value": 68.8
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 16.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        },
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        },
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "小外": 2,
+        "全武": 1,
+        "敏": 1,
+        "小鸣金": 1
+      }
+    },
+    {
+      "id": "eq-035",
+      "sourceIndex": 34,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_SHOES",
+      "slot": "胫甲",
+      "displayName": "神力",
+      "quality": "金",
+      "type": "shoe",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 58
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 8.9
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 76.8
+        },
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 9
+        },
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 61.8
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 5
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 8.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "精准": 2,
+        "敏": 1,
+        "小裂石": 1,
+        "首领": 1
+      }
+    },
+    {
+      "id": "eq-036",
+      "sourceIndex": 35,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_SHOES",
+      "slot": "胫甲",
+      "displayName": "神力转小外承音",
+      "quality": "金",
+      "type": "shoe",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 58
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        },
+        {
+          "key": "MIN_LIESHI_ATTACK",
+          "name": "小裂石",
+          "value": 64.67
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.79
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 8.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "精准": 2,
+        "小外": 1,
+        "小裂石": 1,
+        "首领": 1
+      }
+    },
+    {
+      "id": "eq-037",
+      "sourceIndex": 36,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_SHOES",
+      "slot": "胫甲",
+      "displayName": "大牵丝神力",
+      "quality": "金",
+      "type": "shoe",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 58
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.7
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.7
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 73
+        },
+        {
+          "key": "MAX_QIANSI_ATTACK",
+          "name": "大牵丝",
+          "value": 68.8
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 121
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 9.2
+        }
+      ],
+      "transferMarkedSecondaryIndex": 3,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "会心": 1,
+        "首领": 1,
+        "敏": 1,
+        "大牵丝": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-038",
+      "sourceIndex": 37,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_RING",
+      "slot": "环",
+      "displayName": "毕业小外",
+      "quality": "金",
+      "type": "ring",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 133
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "WUXUE_DAMAGE",
+          "name": "全武",
+          "value": 4.61
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "MIN_QIANSI_ATTACK",
+          "name": "小牵丝",
+          "value": 64.67
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 16.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        },
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        },
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "小外": 2,
+        "全武": 1,
+        "敏": 1,
+        "小牵丝": 1
+      }
+    },
+    {
+      "id": "eq-039",
+      "sourceIndex": 38,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_SHOES",
+      "slot": "胫甲",
+      "displayName": "破竹小外神",
+      "quality": "金",
+      "type": "shoe",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MAX_HP",
+          "name": "气血",
+          "value": 8225
+        },
+        {
+          "key": "EXTERNAL_DEFENCE",
+          "name": "外防",
+          "value": 58
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "MAX_POZHU_ATTACK",
+          "name": "大破竹",
+          "value": 64.67
+        },
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "BOSS_DAMAGE",
+          "name": "首领",
+          "value": 4.79
+        }
+      ],
+      "pitch": [
+        {
+          "key": "SFPZ_XLJZS",
+          "name": "伞派生/治疗相关",
+          "value": 9.2
+        }
+      ],
+      "transferMarkedSecondaryIndex": 2,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [
+        {
+          "key": "LIESHI_WEI",
+          "name": "裂石·威"
+        },
+        {
+          "key": "LIESHI_JUN",
+          "name": "裂石·钧"
+        },
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "LIESHI_WEI",
+          "planName": "裂石威-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "裂石钧-默认方案"
+        },
+        {
+          "buildKey": "LIESHI_JUN",
+          "planName": "最优"
+        },
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "会心": 1,
+        "小外": 1,
+        "大破竹": 1,
+        "敏": 1,
+        "首领": 1
+      }
+    },
+    {
+      "id": "eq-040",
+      "sourceIndex": 39,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_2BLADE",
+      "slot": "双刀",
+      "displayName": "少小外",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 106.8
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "2BLADE_DAMAGE",
+          "name": "双刀",
+          "value": 9.7
+        },
+        {
+          "key": "MAX_WUXIANG_ATTACK",
+          "name": "大无相",
+          "value": 68.8
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 14
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 16.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": 0,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "小外": 2,
+        "双刀": 1,
+        "大无相": 1,
+        "会心": 1
+      }
+    },
+    {
+      "id": "eq-041",
+      "sourceIndex": 40,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_FIST",
+      "slot": "手甲",
+      "displayName": "无神",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": true,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 72.19
+        },
+        {
+          "key": "ACCURACY_RATE",
+          "name": "精准",
+          "value": 11.66
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 13.16
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 16.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": null,
+      "tuningTimes": null,
+      "groups": [
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "buildKeys": [
+        {
+          "key": "POZHU_ZUN",
+          "name": "POZHU_ZUN"
+        }
+      ],
+      "planBindings": [
+        {
+          "buildKey": "POZHU_ZUN",
+          "planName": "最优"
+        }
+      ],
+      "termCounts": {
+        "敏": 2,
+        "精准": 1,
+        "会心": 1,
+        "小外": 1
+      }
+    },
+    {
+      "id": "eq-042",
+      "sourceIndex": 41,
+      "source": "yysls-assistant",
+      "rawEquipmentKey": "EQUIPMENT_WEAPON_FIST",
+      "slot": "手甲",
+      "displayName": "小外无神",
+      "quality": "金",
+      "type": "weapon",
+      "isChengyin": false,
+      "baseAttrs": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 100
+        },
+        {
+          "key": "MAX_EXTERNAL_ATTACK",
+          "name": "大外",
+          "value": 232
+        }
+      ],
+      "firstTuning": [
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.1
+        }
+      ],
+      "secondaryTuning": [
+        {
+          "key": "MIN",
+          "name": "敏",
+          "value": 75.6
+        },
+        {
+          "key": "MIN_EXTERNAL_ATTACK",
+          "name": "小外",
+          "value": 114.12
+        },
+        {
+          "key": "MAX_WUXIANG_ATTACK",
+          "name": "大无相",
+          "value": 64.4
+        },
+        {
+          "key": "CRITICAL_RATE",
+          "name": "会心",
+          "value": 14
+        }
+      ],
+      "pitch": [
+        {
+          "key": "EXTERNAL_PENETRATION",
+          "name": "外功穿透",
+          "value": 16.8
+        }
+      ],
+      "transferMarkedSecondaryIndex": 1,
+      "tuningTimes": null,
+      "groups": [],
+      "buildKeys": [],
+      "planBindings": [],
+      "termCounts": {
+        "小外": 2,
+        "敏": 1,
+        "大无相": 1,
+        "会心": 1
+      }
+    }
+  ]
+}
