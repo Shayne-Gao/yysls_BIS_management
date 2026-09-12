@@ -728,28 +728,32 @@ const html = String.raw`<!doctype html>
       padding: 0 24px 24px;
     }
     .config-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 14px;
+      overflow-x: auto;
       padding: 14px;
     }
-    .config-card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(11, 16, 24, .78);
-      overflow: hidden;
+    .config-table {
+      min-width: 1180px;
     }
-    .config-card-head {
+    .config-table th:first-child,
+    .config-table td:first-child {
+      min-width: 260px;
+    }
+    .config-table th:nth-child(2),
+    .config-table td:nth-child(2) {
+      min-width: 680px;
+    }
+    .config-table th:last-child,
+    .config-table td:last-child {
+      min-width: 260px;
+    }
+    .config-flow-cell {
       display: grid;
-      gap: 8px;
-      padding: 14px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.025);
+      gap: 6px;
     }
     .config-title-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 10px;
     }
     .config-title {
@@ -762,14 +766,14 @@ const html = String.raw`<!doctype html>
       font-size: 12px;
     }
     .count-editor {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(98px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      padding: 12px 14px;
     }
     .count-field {
       display: grid;
       gap: 4px;
+      min-width: 78px;
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 12px;
       padding: 8px;
@@ -795,7 +799,6 @@ const html = String.raw`<!doctype html>
       display: grid;
       grid-template-columns: 1fr 76px auto;
       gap: 8px;
-      padding: 0 14px 14px;
     }
     .config-add-row select,
     .config-add-row input {
@@ -2122,7 +2125,7 @@ const html = String.raw`<!doctype html>
     }
 
     function renderBenchmarkConfigView() {
-      const cards = BENCHMARKS.benchmarks
+      const rows = BENCHMARKS.benchmarks
         .slice()
         .sort((a, b) =>
           purposeOrder(benchmarkPurpose(a).label) - purposeOrder(benchmarkPurpose(b).label) ||
@@ -2144,24 +2147,31 @@ const html = String.raw`<!doctype html>
             .filter(term => !(term in counts))
             .map(term => '<option value="' + escapeHtml(term) + '">' + escapeHtml(term) + '</option>')
             .join("");
-          return '<article class="config-card" data-config-id="' + escapeHtml(benchmark.id) + '">' +
-            '<div class="config-card-head">' +
+          return '<tr data-config-id="' + escapeHtml(benchmark.id) + '">' +
+            '<td>' +
+              '<div class="config-flow-cell">' +
               '<div class="config-title-row">' +
                 '<div class="config-title">' + escapeHtml(benchmark.flow) + '</div>' +
                 '<span class="purpose-label ' + purpose.className + '">' + escapeHtml(purpose.label) + '</span>' +
               '</div>' +
               '<div class="config-subtitle">' + escapeHtml(benchmark.set + ' / ' + benchmark.axis + (benchmark.notes ? ' · ' + benchmark.notes : "")) + '</div>' +
               '<div class="matrix-flow-req">' + escapeHtml(formatCounts(counts)) + '</div>' +
-            '</div>' +
-            '<div class="count-editor">' + (fields || '<div class="muted">暂无词条数量</div>') + '</div>' +
-            '<div class="config-add-row">' +
-              '<select class="config-add-term">' + options + '</select>' +
-              '<input class="config-add-count" type="number" min="1" step="1" value="1" />' +
-              '<button class="secondary-action config-add-button" type="button">添加</button>' +
-            '</div>' +
-          '</article>';
+              '</div>' +
+            '</td>' +
+            '<td><div class="count-editor">' + (fields || '<div class="muted">暂无词条数量</div>') + '</div></td>' +
+            '<td>' +
+              '<div class="config-add-row">' +
+                '<select class="config-add-term">' + options + '</select>' +
+                '<input class="config-add-count" type="number" min="1" step="1" value="1" />' +
+                '<button class="secondary-action config-add-button" type="button">添加</button>' +
+              '</div>' +
+            '</td>' +
+          '</tr>';
         }).join("");
-      document.getElementById("benchmarkConfigWrap").innerHTML = cards || '<div class="empty">暂无流派配置</div>';
+      const header = '<thead><tr><th>流派</th><th>词条数量</th><th>新增词条</th></tr></thead>';
+      document.getElementById("benchmarkConfigWrap").innerHTML = rows
+        ? '<table class="matrix-table config-table">' + header + '<tbody>' + rows + '</tbody></table>'
+        : '<div class="empty">暂无流派配置</div>';
     }
 
     function bindBenchmarkConfigEvents() {
