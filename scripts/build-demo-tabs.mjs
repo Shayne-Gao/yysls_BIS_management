@@ -839,13 +839,14 @@ const html = String.raw`<!doctype html>
         <div class="manage-head">
           <div>
             <div class="manage-title">装备管理</div>
-            <div class="muted">新增和删除会保存在本地，不改原始导入数据。</div>
+            <div class="muted">仓库内置装备仅作示例；可一键清空后导入或录入自己的装备。</div>
           </div>
           <div class="manage-actions">
             <button class="primary-action" id="openManualModal" type="button">新增装备</button>
             <button class="secondary-action" id="importEquipmentTxt" type="button">导入 TXT</button>
             <button class="secondary-action" id="exportEquipmentTxt" type="button">导出 TXT</button>
-            <button class="secondary-action" id="resetLocalData" type="button">清空本地改动</button>
+            <button class="danger-action" id="clearEquipmentArchive" type="button">清空装备存档</button>
+            <button class="secondary-action" id="resetLocalData" type="button">恢复示例/默认</button>
             <input class="hidden" id="equipmentTxtFile" type="file" accept=".txt,text/plain" />
           </div>
         </div>
@@ -1761,6 +1762,19 @@ const html = String.raw`<!doctype html>
       renderAll();
     }
 
+    function clearEquipmentArchive() {
+      if (!confirm("确认清空当前装备存档？\\n这会隐藏仓库示例装备，并清空本地手动录入/导入的装备；流派配置不会被清空。")) return;
+      localData.addedItems = [];
+      localData.deletedIds = BASE_ITEMS.map(item => item.id);
+      saveLocalData();
+      manualState.selectedTerms = [];
+      state.selectedId = null;
+      state.selectedBenchmarkId = null;
+      applyLocalData();
+      renderFilters();
+      renderAll();
+    }
+
     function exportEquipmentTxt() {
       const payload = {
         schemaVersion: 2,
@@ -1835,8 +1849,9 @@ const html = String.raw`<!doctype html>
         renderManualManager();
       });
       document.getElementById("manualAdd").addEventListener("click", addManualItem);
+      document.getElementById("clearEquipmentArchive").addEventListener("click", clearEquipmentArchive);
       document.getElementById("resetLocalData").addEventListener("click", () => {
-        if (!confirm("确认清空本地新增、删除和流派配置改动？导入数据和默认词条数量会恢复显示。")) return;
+        if (!confirm("确认恢复示例装备和默认流派配置？\\n本地新增、删除和流派配置改动都会清空。")) return;
         localData = { addedItems: [], deletedIds: [], benchmarkCounts: {} };
         saveLocalData();
         manualState.selectedTerms = [];
@@ -1848,7 +1863,6 @@ const html = String.raw`<!doctype html>
 
     function renderStats() {
       const data = [
-        ["角色", EQUIPMENT.roleName],
         ["装备", EQUIPMENT.itemCount],
         ["部位", Object.keys(EQUIPMENT.summary.bySlot).length],
         ["方案", BENCHMARKS.benchmarks.length]

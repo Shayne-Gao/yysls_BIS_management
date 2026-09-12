@@ -32,6 +32,14 @@
 - `data/benchmarks.current.json`：只记录截图中每个流派方案的词条数量 benchmark，后续换图主要改这个文件。
 - `data/slot-recommendations.current.json`：记录基于 benchmark 推导出的每个装备部位必选词条、可选词条池、全身计数要求。
 
+## 装备存档
+
+- 仓库里的 `data/my-equipment.current.json` 和 `data/feishu-equipment.current.json` 只作为示例装备数据。
+- 用户在网页里新增、导入、删除装备时，记录只保存在当前浏览器的 `Local Storage`，不会写回 GitHub。
+- 删除示例装备会在本地记录为已删除，刷新页面后仍会隐藏。
+- “清空装备存档”会隐藏全部示例装备，并清空本地新增/导入装备，方便用户从空装备库开始维护自己的装备。
+- “恢复示例/默认”会清掉本地装备改动和流派配置改动，重新显示仓库内置示例数据。
+
 ## 数据分层原则
 
 - benchmark 文件只负责“目标总量”，例如 `12大外 + 10劲 + 2精准 + 6会心`。
