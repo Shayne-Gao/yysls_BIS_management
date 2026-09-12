@@ -83,6 +83,7 @@ const html = String.raw`<!doctype html>
       --blue: #6bb9ff;
       --red: #ff7a90;
       --orange: #f4a261;
+      --page-max: none;
     }
     * { box-sizing: border-box; }
     body {
@@ -109,7 +110,7 @@ const html = String.raw`<!doctype html>
       align-items: flex-start;
       justify-content: space-between;
       gap: 18px;
-      max-width: 1480px;
+      max-width: var(--page-max);
       margin: 0 auto 14px;
     }
     h1 { margin: 0; font-size: 22px; letter-spacing: .04em; }
@@ -127,7 +128,7 @@ const html = String.raw`<!doctype html>
     .tabs {
       display: flex;
       gap: 8px;
-      max-width: 1480px;
+      max-width: var(--page-max);
       margin: 0 auto;
       overflow-x: auto;
       padding-bottom: 3px;
@@ -135,7 +136,7 @@ const html = String.raw`<!doctype html>
     .view-switch {
       display: flex;
       gap: 8px;
-      max-width: 1480px;
+      max-width: var(--page-max);
       margin: 0 auto 10px;
     }
     .tab {
@@ -168,7 +169,7 @@ const html = String.raw`<!doctype html>
       font-weight: 700;
     }
     .layout {
-      max-width: 1480px;
+      max-width: var(--page-max);
       margin: 0 auto;
       padding: 16px;
       display: grid;
@@ -406,7 +407,12 @@ const html = String.raw`<!doctype html>
       gap: 10px;
       margin-bottom: 10px;
     }
-    .card-title { font-weight: 750; }
+    .card-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-weight: 750;
+    }
     .purpose-label {
       display: inline-flex;
       align-items: center;
@@ -593,17 +599,22 @@ const html = String.raw`<!doctype html>
     }
     .hidden { display: none !important; }
     .matrix-layout {
-      max-width: 1480px;
+      max-width: var(--page-max);
       margin: 0 auto;
       padding: 16px;
     }
     .matrix-wrap {
-      overflow: auto;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: scroll;
+      overflow-y: visible;
+      scrollbar-gutter: stable;
+      -webkit-overflow-scrolling: touch;
       padding: 14px;
     }
     .matrix-table {
-      width: 100%;
-      min-width: 1100px;
+      width: max-content;
+      min-width: 100%;
       border-collapse: separate;
       border-spacing: 0;
       font-size: 12px;
@@ -773,16 +784,22 @@ const html = String.raw`<!doctype html>
     .tooltip-score.miss { color: #ff6b86; }
     .matrix-empty { color: rgba(156,169,190,.45); }
     .benchmark-layout {
-      max-width: 1480px;
+      max-width: var(--page-max);
       margin: 18px auto;
-      padding: 0 24px 24px;
+      padding: 0 16px 24px;
     }
     .config-grid {
-      overflow-x: auto;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: scroll;
+      overflow-y: visible;
+      scrollbar-gutter: stable;
+      -webkit-overflow-scrolling: touch;
       padding: 14px;
     }
     .config-table {
-      min-width: 1640px;
+      width: max-content;
+      min-width: 100%;
     }
     .config-table th,
     .config-table td {
@@ -800,7 +817,25 @@ const html = String.raw`<!doctype html>
     }
     .config-table th:last-child,
     .config-table td:last-child {
-      min-width: 250px;
+      min-width: max-content;
+    }
+    .config-toolbar {
+      display: grid;
+      grid-template-columns: 150px 150px 150px 150px minmax(180px, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      margin: 12px 0 0;
+    }
+    .config-toolbar input,
+    .config-toolbar select,
+    .config-edit-fields input,
+    .config-edit-fields select {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #182232;
+      color: var(--text);
     }
     .config-flow-cell {
       display: grid;
@@ -826,6 +861,12 @@ const html = String.raw`<!doctype html>
     .config-subtitle {
       color: rgba(156,169,190,.82);
       font-size: 12px;
+    }
+    .config-edit-fields {
+      display: grid;
+      grid-template-columns: 120px 120px 120px 120px 1fr;
+      gap: 8px;
+      min-width: 620px;
     }
     .count-editor {
       display: flex;
@@ -863,7 +904,7 @@ const html = String.raw`<!doctype html>
     }
     .config-add-row {
       display: grid;
-      grid-template-columns: 1fr 76px auto;
+      grid-template-columns: minmax(140px, 1fr) 64px auto auto auto;
       gap: 8px;
     }
     .config-add-row select,
@@ -881,6 +922,7 @@ const html = String.raw`<!doctype html>
       .manual-form { grid-template-columns: 1fr; }
       .hero { flex-direction: column; }
       .stats { justify-content: flex-start; }
+      .config-toolbar { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -982,9 +1024,23 @@ const html = String.raw`<!doctype html>
       <div class="slot-summary">
         <div>
           <h2>流派配置</h2>
-          <span class="muted">管理各个流派方案的词条数量。修改后会保存在本地，并影响装备评分和流派排序。</span>
+          <span class="muted">管理各个流派方案。修改后会保存在本地，并影响装备评分和流派排序。</span>
         </div>
-        <button class="secondary-action" id="resetBenchmarkCounts" type="button">恢复默认词条数量</button>
+        <button class="secondary-action" id="resetBenchmarkCounts" type="button">恢复默认配置</button>
+      </div>
+      <div class="config-toolbar">
+        <input id="newBenchmarkFlow" placeholder="流派名，如 破竹·鸢" />
+        <select id="newBenchmarkCategory">
+          <option value="小外流">小外流</option>
+          <option value="大外流">大外流</option>
+          <option value="会意流">会意流</option>
+          <option value="治疗流">治疗流</option>
+          <option value="自定义流">自定义流</option>
+        </select>
+        <input id="newBenchmarkSet" placeholder="套装，如 断岳" />
+        <input id="newBenchmarkAxis" placeholder="轴向/方案" />
+        <input id="newBenchmarkNotes" placeholder="备注，可选" />
+        <button class="primary-action" id="addBenchmarkConfig" type="button">新增配置</button>
       </div>
       <div class="config-grid" id="benchmarkConfigWrap"></div>
     </div>
@@ -1097,7 +1153,8 @@ const html = String.raw`<!doctype html>
       slot: tabOrder.find(slot => EQUIPMENT.items.some(item => displaySlot(item) === slot)) || "武器",
       selectedId: null,
       selectedBenchmarkId: null,
-      countWeaponsInMatrix: false
+      countWeaponsInMatrix: false,
+      editingBenchmarkId: null
     };
     const STORAGE_KEY = "yanyun-equipment-manager-local-v1";
     const BASE_ITEMS = EQUIPMENT.items.map(item => structuredClone(item));
@@ -1111,10 +1168,13 @@ const html = String.raw`<!doctype html>
         return {
           addedItems: Array.isArray(parsed.addedItems) ? parsed.addedItems : [],
           deletedIds: Array.isArray(parsed.deletedIds) ? parsed.deletedIds : [],
-          benchmarkCounts: parsed.benchmarkCounts && typeof parsed.benchmarkCounts === "object" ? parsed.benchmarkCounts : {}
+          benchmarkCounts: parsed.benchmarkCounts && typeof parsed.benchmarkCounts === "object" ? parsed.benchmarkCounts : {},
+          addedBenchmarks: Array.isArray(parsed.addedBenchmarks) ? parsed.addedBenchmarks : [],
+          deletedBenchmarkIds: Array.isArray(parsed.deletedBenchmarkIds) ? parsed.deletedBenchmarkIds : [],
+          benchmarkOverrides: parsed.benchmarkOverrides && typeof parsed.benchmarkOverrides === "object" ? parsed.benchmarkOverrides : {}
         };
       } catch {
-        return { addedItems: [], deletedIds: [], benchmarkCounts: {} };
+        return { addedItems: [], deletedIds: [], benchmarkCounts: {}, addedBenchmarks: [], deletedBenchmarkIds: [], benchmarkOverrides: {} };
       }
     }
 
@@ -1271,21 +1331,65 @@ const html = String.raw`<!doctype html>
       return { bySlot, byTerm };
     }
 
+    function cleanBenchmarkCounts(counts) {
+      const cleanCounts = {};
+      for (const [term, rawCount] of Object.entries(counts || {})) {
+        const count = Number(rawCount);
+        if (term && Number.isFinite(count) && count > 0) cleanCounts[term] = count;
+      }
+      return cleanCounts;
+    }
+
+    function normalizeBenchmarkConfig(benchmark, fallbackId) {
+      const counts = cleanBenchmarkCounts(benchmark?.counts || {});
+      const flow = String(benchmark?.flow || "").trim() || "未命名流派";
+      return {
+        id: String(benchmark?.id || fallbackId || ("custom-benchmark-" + Date.now())),
+        category: String(benchmark?.category || "").trim() || "自定义流",
+        flow,
+        set: String(benchmark?.set || "").trim() || "未设置",
+        axis: String(benchmark?.axis || "").trim() || "自定义",
+        jade: String(benchmark?.jade || "").trim(),
+        notes: String(benchmark?.notes || "").trim(),
+        formula: formatCounts(counts),
+        counts
+      };
+    }
+
+    function benchmarkSnapshot(benchmark) {
+      const normalized = normalizeBenchmarkConfig(benchmark);
+      return {
+        id: normalized.id,
+        category: normalized.category,
+        flow: normalized.flow,
+        set: normalized.set,
+        axis: normalized.axis,
+        jade: normalized.jade,
+        notes: normalized.notes,
+        counts: normalized.counts
+      };
+    }
+
+    function benchmarkSnapshotsEqual(left, right) {
+      return JSON.stringify(benchmarkSnapshot(left)) === JSON.stringify(benchmarkSnapshot(right));
+    }
+
     function applyLocalData() {
-      BENCHMARKS.benchmarks = BASE_BENCHMARKS.map(benchmark => {
-        const override = localData.benchmarkCounts?.[benchmark.id];
-        if (!override) return structuredClone(benchmark);
-        const counts = {};
-        for (const [term, rawCount] of Object.entries(override)) {
-          const count = Number(rawCount);
-          if (Number.isFinite(count) && count > 0) counts[term] = count;
-        }
-        return {
-          ...structuredClone(benchmark),
-          counts,
-          formula: formatCounts(counts)
-        };
-      });
+      const deletedBenchmarks = new Set(localData.deletedBenchmarkIds || []);
+      BENCHMARKS.benchmarks = BASE_BENCHMARKS
+        .filter(benchmark => !deletedBenchmarks.has(benchmark.id))
+        .map(benchmark => {
+          const base = structuredClone(benchmark);
+          const override = localData.benchmarkOverrides?.[benchmark.id];
+          const countOverride = localData.benchmarkCounts?.[benchmark.id];
+          if (override) return normalizeBenchmarkConfig({ ...base, ...override, counts: override.counts || base.counts }, benchmark.id);
+          if (!countOverride) return normalizeBenchmarkConfig(base, benchmark.id);
+          return normalizeBenchmarkConfig({ ...base, counts: countOverride }, benchmark.id);
+        });
+      const addedBenchmarks = (localData.addedBenchmarks || [])
+        .map((benchmark, index) => normalizeBenchmarkConfig(benchmark, benchmark.id || ("custom-benchmark-" + index)))
+        .filter(benchmark => !deletedBenchmarks.has(benchmark.id));
+      BENCHMARKS.benchmarks.push(...addedBenchmarks);
       const deleted = new Set(localData.deletedIds);
       EQUIPMENT.items = [
         ...BASE_ITEMS.filter(item => !deleted.has(item.id)),
@@ -1299,6 +1403,9 @@ const html = String.raw`<!doctype html>
       }
       if (!EQUIPMENT.items.some(item => displaySlot(item) === state.slot)) {
         state.slot = tabOrder.find(slot => EQUIPMENT.items.some(item => displaySlot(item) === slot)) || "武器";
+      }
+      if (state.selectedBenchmarkId && !BENCHMARKS.benchmarks.some(benchmark => benchmark.id === state.selectedBenchmarkId)) {
+        state.selectedBenchmarkId = null;
       }
     }
 
@@ -2117,7 +2224,8 @@ const html = String.raw`<!doctype html>
       document.getElementById("clearEquipmentArchive").addEventListener("click", clearEquipmentArchive);
       document.getElementById("resetLocalData").addEventListener("click", () => {
         if (!confirm("确认恢复示例装备和默认流派配置？\\n本地新增、删除和流派配置改动都会清空。")) return;
-        localData = { addedItems: [], deletedIds: [], benchmarkCounts: {} };
+        localData = { addedItems: [], deletedIds: [], benchmarkCounts: {}, addedBenchmarks: [], deletedBenchmarkIds: [], benchmarkOverrides: {} };
+        state.editingBenchmarkId = null;
         saveLocalData();
         resetManualState();
         applyLocalData();
@@ -2215,6 +2323,27 @@ const html = String.raw`<!doctype html>
       return benchmarkPurpose(match?.benchmark);
     }
 
+    function itemPurposes(item, matches) {
+      const scoringNames = termsOf(item).scoring.map(term => term.name);
+      if (scoringNames.some(name => name.includes("玩家增") || name.includes("治疗") || name.includes("受疗"))) {
+        return [{ label: "治疗", className: "purpose-heal" }];
+      }
+      const validMatches = (matches || []).filter(match => match && match.total > 0);
+      if (!validMatches.length) return [benchmarkPurpose(null)];
+      const bestRatio = validMatches[0].hit / validMatches[0].total;
+      const purposes = [];
+      const seen = new Set();
+      for (const match of validMatches) {
+        const ratio = match.hit / match.total;
+        if (Math.abs(ratio - bestRatio) >= 0.0001) break;
+        const purpose = benchmarkPurpose(match.benchmark);
+        if (seen.has(purpose.label)) continue;
+        seen.add(purpose.label);
+        purposes.push(purpose);
+      }
+      return purposes.length ? purposes : [benchmarkPurpose(validMatches[0]?.benchmark)];
+    }
+
     function renderCards() {
       const items = filteredItems();
       if (!state.selectedId || !items.some(item => item.id === state.selectedId)) {
@@ -2223,8 +2352,11 @@ const html = String.raw`<!doctype html>
       document.getElementById("slotTitle").textContent = state.slot + " 装备";
       document.getElementById("slotHint").textContent = items.length + " 件符合当前筛选";
       document.getElementById("cards").innerHTML = items.map(item => {
-        const best = (selectedFlow() === "all" ? allMatches(item) : viewMatches(item))[0];
-        const purpose = itemPurpose(item, best);
+        const matches = selectedFlow() === "all" ? allMatches(item) : viewMatches(item);
+        const best = matches[0];
+        const purposeTags = itemPurposes(item, matches)
+          .map(purpose => '<span class="purpose-label ' + purpose.className + '">' + escapeHtml(purpose.label) + '</span>')
+          .join("");
         const terms = [
           ...item.firstTuning.map(stat => '<span class="term initial ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(stat.name) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
           ...item.secondaryTuning.map(stat => '<span class="term ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(stat.name) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
@@ -2233,7 +2365,7 @@ const html = String.raw`<!doctype html>
         const tags = flowTags(item);
         return '<article class="card ' + (state.selectedId === item.id ? "active" : "") + '" data-id="' + item.id + '">' +
           '<div class="card-head">' +
-            '<div><div class="card-title"><span class="purpose-label ' + purpose.className + '">' + escapeHtml(purpose.label) + '</span></div><div class="muted">' + escapeHtml(item.slot + ' · ' + item.quality + (item.isChengyin ? " · 承音" : "")) + '</div><div class="import-name">' + escapeHtml(item.displayName) + '</div></div>' +
+            '<div><div class="card-title">' + purposeTags + '</div><div class="muted">' + escapeHtml(item.slot + ' · ' + item.quality + (item.isChengyin ? " · 承音" : "")) + '</div><div class="import-name">' + escapeHtml(item.displayName) + '</div></div>' +
             '<span class="badge ' + (best ? badgeClass(best) : "bad") + '">' + (best ? best.status : "无") + '</span>' +
           '</div>' +
           '<div class="terms">' + terms + '</div>' +
@@ -2371,23 +2503,91 @@ const html = String.raw`<!doctype html>
       return BASE_BENCHMARKS.find(benchmark => benchmark.id === id);
     }
 
-    function saveBenchmarkCounts(id, counts) {
+    function refreshAfterBenchmarkChange() {
+      applyLocalData();
+      renderFilters();
+      renderAll();
+    }
+
+    function persistBenchmarkConfig(benchmark) {
+      const normalized = normalizeBenchmarkConfig(benchmark, benchmark.id);
       localData.benchmarkCounts = localData.benchmarkCounts || {};
-      const cleanCounts = {};
-      for (const [term, rawCount] of Object.entries(counts || {})) {
-        const count = Number(rawCount);
-        if (Number.isFinite(count) && count > 0) cleanCounts[term] = count;
-      }
-      const base = baseBenchmarkById(id);
-      const baseText = JSON.stringify(base?.counts || {});
-      const cleanText = JSON.stringify(cleanCounts);
-      if (base && cleanText === baseText) {
-        delete localData.benchmarkCounts[id];
+      localData.benchmarkOverrides = localData.benchmarkOverrides || {};
+      localData.addedBenchmarks = localData.addedBenchmarks || [];
+      const base = baseBenchmarkById(normalized.id);
+      if (base) {
+        delete localData.benchmarkCounts[normalized.id];
+        if (benchmarkSnapshotsEqual(normalized, base)) {
+          delete localData.benchmarkOverrides[normalized.id];
+        } else {
+          localData.benchmarkOverrides[normalized.id] = benchmarkSnapshot(normalized);
+        }
       } else {
-        localData.benchmarkCounts[id] = cleanCounts;
+        const next = benchmarkSnapshot(normalized);
+        const index = localData.addedBenchmarks.findIndex(entry => entry.id === normalized.id);
+        if (index >= 0) localData.addedBenchmarks[index] = next;
+        else localData.addedBenchmarks.push(next);
+        delete localData.benchmarkCounts[normalized.id];
+        delete localData.benchmarkOverrides[normalized.id];
       }
       saveLocalData();
-      applyLocalData();
+    }
+
+    function saveBenchmarkCounts(id, counts) {
+      const benchmark = BENCHMARKS.benchmarks.find(entry => entry.id === id);
+      if (!benchmark) return;
+      persistBenchmarkConfig({ ...benchmark, counts });
+    }
+
+    function deleteBenchmarkConfig(id) {
+      const benchmark = BENCHMARKS.benchmarks.find(entry => entry.id === id);
+      if (!benchmark) return;
+      if (!confirm("确认删除流派配置「" + benchmark.flow + "」？\\n删除后会立即影响评分和流派视图。")) return;
+      localData.deletedBenchmarkIds = localData.deletedBenchmarkIds || [];
+      localData.benchmarkCounts = localData.benchmarkCounts || {};
+      localData.benchmarkOverrides = localData.benchmarkOverrides || {};
+      localData.addedBenchmarks = localData.addedBenchmarks || [];
+      if (baseBenchmarkById(id)) {
+        if (!localData.deletedBenchmarkIds.includes(id)) localData.deletedBenchmarkIds.push(id);
+      } else {
+        localData.addedBenchmarks = localData.addedBenchmarks.filter(entry => entry.id !== id);
+      }
+      delete localData.benchmarkCounts[id];
+      delete localData.benchmarkOverrides[id];
+      if (state.editingBenchmarkId === id) state.editingBenchmarkId = null;
+      if (state.selectedBenchmarkId === id) state.selectedBenchmarkId = null;
+      saveLocalData();
+      refreshAfterBenchmarkChange();
+    }
+
+    function categoryOptions(selected) {
+      const options = ["小外流", "大外流", "会意流", "治疗流", "自定义流"];
+      return options.map(option =>
+        '<option value="' + escapeHtml(option) + '"' + (option === selected ? " selected" : "") + '>' + escapeHtml(option) + '</option>'
+      ).join("");
+    }
+
+    function addBenchmarkConfig() {
+      const flow = document.getElementById("newBenchmarkFlow").value.trim();
+      if (!flow) {
+        alert("请先填写流派名。");
+        return;
+      }
+      const benchmark = normalizeBenchmarkConfig({
+        id: "custom-benchmark-" + Date.now(),
+        flow,
+        category: document.getElementById("newBenchmarkCategory").value,
+        set: document.getElementById("newBenchmarkSet").value,
+        axis: document.getElementById("newBenchmarkAxis").value,
+        notes: document.getElementById("newBenchmarkNotes").value,
+        counts: {}
+      });
+      persistBenchmarkConfig(benchmark);
+      state.editingBenchmarkId = benchmark.id;
+      ["newBenchmarkFlow", "newBenchmarkSet", "newBenchmarkAxis", "newBenchmarkNotes"].forEach(id => {
+        document.getElementById(id).value = "";
+      });
+      refreshAfterBenchmarkChange();
     }
 
     function renderBenchmarkConfigView() {
@@ -2401,6 +2601,7 @@ const html = String.raw`<!doctype html>
         .map(benchmark => {
           const purpose = benchmarkPurpose(benchmark);
           const counts = benchmark.counts || {};
+          const isEditing = state.editingBenchmarkId === benchmark.id;
           const fields = Object.entries(counts)
             .sort(([a], [b]) => compareConfigTerms(a, b))
             .map(([term, count]) =>
@@ -2413,28 +2614,39 @@ const html = String.raw`<!doctype html>
             .filter(term => !(term in counts))
             .map(term => '<option value="' + escapeHtml(term) + '">' + escapeHtml(term) + '</option>')
             .join("");
+          const flowContent = isEditing
+            ? '<div class="config-edit-fields">' +
+                '<input class="config-edit-value" data-field="flow" value="' + escapeHtml(benchmark.flow) + '" placeholder="流派名" />' +
+                '<select class="config-edit-value" data-field="category">' + categoryOptions(benchmark.category) + '</select>' +
+                '<input class="config-edit-value" data-field="set" value="' + escapeHtml(benchmark.set) + '" placeholder="套装" />' +
+                '<input class="config-edit-value" data-field="axis" value="' + escapeHtml(benchmark.axis) + '" placeholder="轴向/方案" />' +
+                '<input class="config-edit-value" data-field="notes" value="' + escapeHtml(benchmark.notes || "") + '" placeholder="备注" />' +
+              '</div>'
+            : '<div class="config-flow-cell">' +
+                '<div class="config-title-row">' +
+                  '<div class="config-title">' + escapeHtml(benchmark.flow) + '</div>' +
+                  '<span class="purpose-label ' + purpose.className + '">' + escapeHtml(purpose.label) + '</span>' +
+                '</div>' +
+                '<div class="config-subtitle">' + escapeHtml(benchmark.set + ' / ' + benchmark.axis + (benchmark.notes ? ' · ' + benchmark.notes : "")) + '</div>' +
+                '<div class="matrix-flow-req">' + escapeHtml(formatCounts(counts)) + '</div>' +
+              '</div>';
+          const actionButtons = isEditing
+            ? '<button class="secondary-action config-save-button" type="button">保存</button><button class="secondary-action config-cancel-button" type="button">取消</button>'
+            : '<button class="secondary-action config-edit-button" type="button">编辑</button><button class="secondary-action config-delete-button" type="button">删除</button>';
           return '<tr data-config-id="' + escapeHtml(benchmark.id) + '">' +
-            '<td>' +
-              '<div class="config-flow-cell">' +
-              '<div class="config-title-row">' +
-                '<div class="config-title">' + escapeHtml(benchmark.flow) + '</div>' +
-                '<span class="purpose-label ' + purpose.className + '">' + escapeHtml(purpose.label) + '</span>' +
-              '</div>' +
-              '<div class="config-subtitle">' + escapeHtml(benchmark.set + ' / ' + benchmark.axis + (benchmark.notes ? ' · ' + benchmark.notes : "")) + '</div>' +
-              '<div class="matrix-flow-req">' + escapeHtml(formatCounts(counts)) + '</div>' +
-              '</div>' +
-            '</td>' +
+            '<td>' + flowContent + '</td>' +
             '<td><div class="count-editor">' + (fields || '<div class="muted">暂无词条数量</div>') + '</div></td>' +
             '<td>' +
               '<div class="config-add-row">' +
                 '<select class="config-add-term">' + options + '</select>' +
                 '<input class="config-add-count" type="number" min="1" step="1" value="1" />' +
                 '<button class="secondary-action config-add-button" type="button">添加</button>' +
+                actionButtons +
               '</div>' +
             '</td>' +
           '</tr>';
         }).join("");
-      const header = '<thead><tr><th>流派</th><th>词条数量</th><th>新增词条</th></tr></thead>';
+      const header = '<thead><tr><th>流派</th><th>词条数量</th><th>操作</th></tr></thead>';
       document.getElementById("benchmarkConfigWrap").innerHTML = rows
         ? '<table class="matrix-table config-table">' + header + '<tbody>' + rows + '</tbody></table>'
         : '<div class="empty">暂无流派配置</div>';
@@ -2452,29 +2664,56 @@ const html = String.raw`<!doctype html>
         if (Number.isFinite(count) && count > 0) counts[term] = count;
         else delete counts[term];
         saveBenchmarkCounts(id, counts);
-        renderFilters();
-        renderBenchmarkConfigView();
+        refreshAfterBenchmarkChange();
       });
       document.getElementById("benchmarkView").addEventListener("click", event => {
-        if (!event.target.classList.contains("config-add-button")) return;
         const card = event.target.closest("[data-config-id]");
         const id = card?.dataset.configId;
         const benchmark = BENCHMARKS.benchmarks.find(entry => entry.id === id);
-        if (!benchmark) return;
-        const term = card.querySelector(".config-add-term")?.value;
-        const count = Number(card.querySelector(".config-add-count")?.value || 1);
-        if (!term || !Number.isFinite(count) || count <= 0) return;
-        saveBenchmarkCounts(id, { ...(benchmark.counts || {}), [term]: count });
-        renderFilters();
-        renderBenchmarkConfigView();
+        if (event.target.classList.contains("config-add-button")) {
+          if (!benchmark) return;
+          const term = card.querySelector(".config-add-term")?.value;
+          const count = Number(card.querySelector(".config-add-count")?.value || 1);
+          if (!term || !Number.isFinite(count) || count <= 0) return;
+          saveBenchmarkCounts(id, { ...(benchmark.counts || {}), [term]: count });
+          refreshAfterBenchmarkChange();
+          return;
+        }
+        if (event.target.classList.contains("config-edit-button")) {
+          state.editingBenchmarkId = id;
+          renderBenchmarkConfigView();
+          return;
+        }
+        if (event.target.classList.contains("config-cancel-button")) {
+          state.editingBenchmarkId = null;
+          renderBenchmarkConfigView();
+          return;
+        }
+        if (event.target.classList.contains("config-save-button")) {
+          if (!benchmark) return;
+          const next = { ...benchmark };
+          card.querySelectorAll(".config-edit-value").forEach(input => {
+            next[input.dataset.field] = input.value;
+          });
+          persistBenchmarkConfig(next);
+          state.editingBenchmarkId = null;
+          refreshAfterBenchmarkChange();
+          return;
+        }
+        if (event.target.classList.contains("config-delete-button")) {
+          deleteBenchmarkConfig(id);
+        }
       });
+      document.getElementById("addBenchmarkConfig").addEventListener("click", addBenchmarkConfig);
       document.getElementById("resetBenchmarkCounts").addEventListener("click", () => {
-        if (!confirm("确认恢复所有流派的默认词条数量？")) return;
+        if (!confirm("确认恢复所有默认流派配置？\\n本地新增、删除和编辑的流派配置都会清空。")) return;
         localData.benchmarkCounts = {};
+        localData.addedBenchmarks = [];
+        localData.deletedBenchmarkIds = [];
+        localData.benchmarkOverrides = {};
+        state.editingBenchmarkId = null;
         saveLocalData();
-        applyLocalData();
-        renderFilters();
-        renderBenchmarkConfigView();
+        refreshAfterBenchmarkChange();
       });
     }
 
