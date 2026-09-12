@@ -1468,6 +1468,7 @@ const html = String.raw`<!doctype html>
 
     function pendingTransferTarget(stat, rule, benchmark, terms) {
       if (!stat.pendingTransfer) return null;
+      if (stat.source === "初始") return null;
       const isSatisfied = (term, source) => {
         if (!terms) return !termMatches(term, stat.name);
         if (source === "初始") return terms.initial.some(actual => termMatches(term, actual));
@@ -1850,7 +1851,7 @@ const html = String.raw`<!doctype html>
 
     function groupedManualTerms(slot, index) {
       const allowed = allowedManualTermsForSlot(slot, index);
-      const selected = new Set(manualState.selectedTerms.map(entry => entry.name));
+      const selected = new Set((index === 0 ? [] : manualState.selectedTerms.slice(1)).map(entry => entry.name));
       return manualTermGroups
         .map(group => ({
           label: group.label,
@@ -1865,6 +1866,7 @@ const html = String.raw`<!doctype html>
     }
 
     function setPendingTransfer(index, enabled) {
+      if (index === 0) return;
       manualState.selectedTerms = manualState.selectedTerms.map((entry, entryIndex) => ({
         ...entry,
         pendingTransfer: enabled && entryIndex === index
@@ -1887,7 +1889,7 @@ const html = String.raw`<!doctype html>
         ? manualState.selectedTerms.map((entry, index) =>
           '<span class="sequence-chip ' + (entry.pendingTransfer ? "pending" : "") + '">' +
             labels[index] + ' · ' + escapeHtml(entry.name) +
-            '<label><input class="pending-transfer-toggle" type="checkbox" data-index="' + index + '"' + (entry.pendingTransfer ? " checked" : "") + ' />待转</label>' +
+            (index === 0 ? '' : '<label><input class="pending-transfer-toggle" type="checkbox" data-index="' + index + '"' + (entry.pendingTransfer ? " checked" : "") + ' />待转</label>') +
           '</span>'
         ).join("")
         : '<span class="muted">请选择 5 个词条</span>';
@@ -1922,7 +1924,7 @@ const html = String.raw`<!doctype html>
       const terms = manualState.selectedTerms;
       const editingItem = localData.addedItems.find(item => item.id === manualState.editingId);
       const id = editingItem?.id || "manual-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
-      const makeStat = entry => ({ key: entry.name, name: entry.name, value: null, pendingTransfer: entry.pendingTransfer === true });
+      const makeStat = (entry, index) => ({ key: entry.name, name: entry.name, value: null, pendingTransfer: index > 0 && entry.pendingTransfer === true });
       return {
         ...(editingItem || {}),
         id,
@@ -1935,8 +1937,8 @@ const html = String.raw`<!doctype html>
         type: weaponSlots.includes(slot) ? "weapon" : "armor",
         isChengyin: editingItem?.isChengyin === true,
         baseAttrs: editingItem?.baseAttrs || [],
-        firstTuning: terms[0] ? [makeStat(terms[0])] : [],
-        secondaryTuning: terms.slice(1, 5).map(makeStat),
+        firstTuning: terms[0] ? [makeStat(terms[0], 0)] : [],
+        secondaryTuning: terms.slice(1, 5).map((entry, index) => makeStat(entry, index + 1)),
         pitch: editingItem?.pitch || [],
         tuningTimes: editingItem?.tuningTimes ?? null,
         groups: editingItem?.groups || [{ key: "manual", name: "手动录入" }]
@@ -1992,7 +1994,7 @@ const html = String.raw`<!doctype html>
       manualState.selectedTerms = [
         ...(item.firstTuning || []),
         ...(item.secondaryTuning || [])
-      ].slice(0, 5).map(stat => ({ name: stat.name, pendingTransfer: stat.pendingTransfer === true }));
+      ].slice(0, 5).map((stat, index) => ({ name: stat.name, pendingTransfer: index > 0 && stat.pendingTransfer === true }));
       const slotSelect = ensureManualSlotSelect();
       slotSelect.value = item.slot;
       renderManualManager();
