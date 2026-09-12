@@ -1923,25 +1923,27 @@ const html = String.raw`<!doctype html>
       const slot = document.getElementById("manualSlot").value;
       const terms = manualState.selectedTerms;
       const editingItem = localData.addedItems.find(item => item.id === manualState.editingId);
-      const id = editingItem?.id || "manual-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
+      const sourceItem = editingItem || EQUIPMENT.items.find(item => item.id === manualState.editingId);
+      const id = editingItem?.id || (sourceItem ? "edit-" + sourceItem.id + "-" + Date.now().toString(36) : "manual-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7));
       const makeStat = (entry, index) => ({ key: entry.name, name: entry.name, value: null, pendingTransfer: index > 0 && entry.pendingTransfer === true });
       return {
-        ...(editingItem || {}),
+        ...(sourceItem || {}),
         id,
-        sourceIndex: editingItem?.sourceIndex ?? localData.addedItems.length,
-        source: editingItem?.source || "manual",
-        rawEquipmentKey: editingItem?.rawEquipmentKey || id,
+        sourceIndex: sourceItem?.sourceIndex ?? localData.addedItems.length,
+        source: sourceItem?.source || "manual",
+        rawEquipmentKey: sourceItem?.rawEquipmentKey || id,
         slot,
-        displayName: editingItem?.displayName || "手动-" + slot + "-" + terms.slice(0, 2).map(entry => entry.name).join("-"),
-        quality: editingItem?.quality || "金",
+        displayName: sourceItem?.displayName || "手动-" + slot + "-" + terms.slice(0, 2).map(entry => entry.name).join("-"),
+        quality: sourceItem?.quality || "金",
         type: weaponSlots.includes(slot) ? "weapon" : "armor",
-        isChengyin: editingItem?.isChengyin === true,
-        baseAttrs: editingItem?.baseAttrs || [],
+        isChengyin: sourceItem?.isChengyin === true,
+        baseAttrs: sourceItem?.baseAttrs || [],
         firstTuning: terms[0] ? [makeStat(terms[0], 0)] : [],
         secondaryTuning: terms.slice(1, 5).map((entry, index) => makeStat(entry, index + 1)),
-        pitch: editingItem?.pitch || [],
-        tuningTimes: editingItem?.tuningTimes ?? null,
-        groups: editingItem?.groups || [{ key: "manual", name: "手动录入" }]
+        pitch: sourceItem?.pitch || [],
+        tuningTimes: sourceItem?.tuningTimes ?? null,
+        groups: sourceItem?.groups || [{ key: "manual", name: "手动录入" }],
+        editedFromId: sourceItem && !editingItem ? sourceItem.id : sourceItem?.editedFromId
       };
     }
 
@@ -1951,9 +1953,14 @@ const html = String.raw`<!doctype html>
         return;
       }
       const item = buildManualItem();
-      if (manualState.editingId) {
+      const editingLocal = localData.addedItems.some(entry => entry.id === manualState.editingId);
+      const editingBase = BASE_ITEMS.some(entry => entry.id === manualState.editingId);
+      if (manualState.editingId && editingLocal) {
         localData.addedItems = localData.addedItems.map(entry => entry.id === manualState.editingId ? item : entry);
       } else {
+        if (editingBase && !localData.deletedIds.includes(manualState.editingId)) {
+          localData.deletedIds.push(manualState.editingId);
+        }
         localData.addedItems.push(item);
       }
       saveLocalData();
@@ -1986,10 +1993,6 @@ const html = String.raw`<!doctype html>
     }
 
     function openEditModal(item) {
-      if (!isLocalEditableItem(item)) {
-        alert("示例装备不能直接编辑。可以删除示例装备后重新录入自己的装备。");
-        return;
-      }
       manualState.editingId = item.id;
       manualState.selectedTerms = [
         ...(item.firstTuning || []),
@@ -2525,9 +2528,8 @@ const html = String.raw`<!doctype html>
         ...item.secondaryTuning.map(stat => '<span class="term ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(statText(stat)) + '</span>'),
         ...item.pitch.map(stat => '<span class="term pitch">' + escapeHtml(statText(stat)) + '</span>')
       ].join("");
-      const actionButtons = (isLocalEditableItem(item)
-        ? '<button class="icon-action" id="editSelected" type="button" title="编辑这件装备" aria-label="编辑这件装备">编</button>'
-        : "") +
+      const actionButtons =
+        '<button class="icon-action" id="editSelected" type="button" title="编辑这件装备" aria-label="编辑这件装备">编</button>' +
         '<button class="icon-action" id="deleteSelected" type="button" title="删除这件装备" aria-label="删除这件装备">删</button>';
       if (!best) {
         document.getElementById("detail").innerHTML =
