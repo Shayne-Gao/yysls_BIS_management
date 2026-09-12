@@ -217,13 +217,45 @@
       background: rgba(233,196,106,.1);
       font-size: 12px;
     }
+    .sequence-chip.pending {
+      border-color: rgba(76,201,240,.45);
+      color: #9be8ff;
+      background: rgba(76,201,240,.1);
+    }
+    .sequence-chip label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      color: inherit;
+    }
+    .sequence-chip input {
+      width: auto;
+      accent-color: #4cc9f0;
+    }
     .term-palette {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+      max-height: 300px;
+      overflow: auto;
+    }
+    .term-group {
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      padding: 9px;
+      background: rgba(255,255,255,.025);
+    }
+    .term-group-title {
+      margin-bottom: 8px;
+      color: rgba(156,169,190,.9);
+      font-size: 12px;
+      font-weight: 850;
+    }
+    .term-group-options {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin-top: 10px;
-      max-height: 132px;
-      overflow: auto;
     }
     .term-option {
       padding: 6px 9px;
@@ -340,6 +372,16 @@
       background: rgba(233,196,106,.12);
       text-decoration: underline;
       text-underline-offset: 3px;
+    }
+    .term.pending {
+      color: #9be8ff;
+      border-color: rgba(76,201,240,.42);
+      background: rgba(76,201,240,.08);
+    }
+    .pending-mark {
+      margin-left: 4px;
+      color: #4cc9f0;
+      font-weight: 900;
     }
     .term.pitch { color: var(--blue); background: rgba(107,185,255,.11); }
     .match-line {
@@ -812,6 +854,7 @@
           <option value="all">全部装备</option>
           <option value="chengyin">只看承音</option>
           <option value="gold">只看金装</option>
+          <option value="pending">只看【待转】</option>
         </select>
       </div>
       <div class="slot-summary">
@@ -829,7 +872,7 @@
       <div class="modal-head">
         <div>
           <h2 id="manualModalTitle">手动录入装备</h2>
-          <div class="muted">按点击顺序生成词条：第 1 条初始，第 2-5 条调律；定音暂不录入、不统计。</div>
+          <div class="muted">按点击顺序生成词条：第 1 条初始，第 2-5 条调律；每件装备最多标 1 条【待转】。</div>
         </div>
         <button class="modal-close" id="closeManualModal" type="button" aria-label="关闭">×</button>
       </div>
@@ -939,8 +982,35 @@
     };
     const statKeyToName = Object.fromEntries(Object.entries(statNameToKey).map(([name, key]) => [key, name]));
     statKeyToName["BLADE_DAMAGE"] = "刀";
-
     const weaponSlots = ["刀","剑","枪","伞","扇","绳镖","鼓","手甲","陌刀","双刀"];
+    const manualTermGroups = [
+      { label: "外功", terms: ["大外", "小外"] },
+      { label: "劲敏势", terms: ["劲", "敏", "势"] },
+      { label: "精准 / 会心 / 会意", terms: ["精准", "会心", "会意"] },
+      { label: "属性攻击", terms: ["大破竹", "小破竹", "大裂石", "小裂石", "大牵丝", "小牵丝", "大鸣金", "小鸣金", "大无相", "小无相"] },
+      { label: "神力 / 增伤", terms: ["全武", "首领", "单体奇术增伤", "群体奇术增伤", "玩家增", "手甲", "绳镖", "陌刀", "横刀", "双刀"] }
+    ];
+    const slotInitialTerms = {
+      "佩": ["大外", "小外"],
+      "环": ["大外", "小外"],
+      "头": ["精准", "会心", "会意"],
+      "衣服": ["精准", "会心", "会意"],
+      "腕甲": ["精准", "会心", "会意", "劲"],
+      "胫甲": ["精准", "会心", "会意", "劲"]
+    };
+    for (const slot of weaponSlots) slotInitialTerms[slot] = ["大外", "小外"];
+    const slotSpecialTerms = {
+      "佩": ["全武"],
+      "环": ["全武"],
+      "腕甲": ["首领"],
+      "胫甲": ["首领"],
+      "手甲": ["手甲"],
+      "绳镖": ["绳镖"],
+      "陌刀": ["陌刀"],
+      "刀": ["横刀"],
+      "双刀": ["双刀"]
+    };
+    const invalidManualTerms = new Set(["破竹", "裂石", "牵丝", "鸣金", "无相", "伞", "扇", "鼓", "剑", "枪", "鼓增", "扇增", "伞增", "剑增", "枪增"]);
     const tabOrder = ["武器","佩","环","头","衣服","腕甲","胫甲"];
     const attributeGroups = {
       "破竹": ["大破竹", "小破竹"],
@@ -959,7 +1029,7 @@
     const STORAGE_KEY = "yanyun-equipment-manager-local-v1";
     const BASE_ITEMS = EQUIPMENT.items.map(item => structuredClone(item));
     const BASE_BENCHMARKS = BENCHMARKS.benchmarks.map(benchmark => structuredClone(benchmark));
-    const manualState = { selectedTerms: [] };
+    const manualState = { selectedTerms: [], editingId: null };
     let localData = loadLocalData();
 
     function loadLocalData() {
@@ -1025,11 +1095,13 @@
     }
 
     function transferStat(stat) {
-      return {
+      const result = {
         key: stat.key || statNameToKey[stat.name] || stat.name,
         name: stat.name || statKeyToName[stat.key] || stat.key,
         value: stat.value ?? ""
       };
+      if (stat.pendingTransfer) result.pendingTransfer = true;
+      return result;
     }
 
     function itemToTransferItem(item) {
@@ -1057,7 +1129,8 @@
       return {
         key: stat.key || statNameToKey[name] || name,
         name,
-        value: stat.value ?? ""
+        value: stat.value ?? "",
+        pendingTransfer: stat.pendingTransfer === true
       };
     }
 
@@ -1101,7 +1174,7 @@
     }
 
     function equipmentSignature(item) {
-      const statSig = list => (list || []).map(stat => (stat.name || "") + ":" + (stat.value ?? "")).join("|");
+      const statSig = list => (list || []).map(stat => (stat.name || "") + ":" + (stat.value ?? "") + ":" + (stat.pendingTransfer ? "pending" : "")).join("|");
       return [
         item.slot,
         item.displayName,
@@ -1167,8 +1240,8 @@
         pitch: item.pitch.map(stat => stat.name),
         all: [...item.firstTuning, ...item.secondaryTuning, ...item.pitch].map(stat => stat.name),
         scoring: [
-          ...item.firstTuning.map(stat => ({ source: "初始", name: stat.name, value: stat.value })),
-          ...item.secondaryTuning.map(stat => ({ source: "调律", name: stat.name, value: stat.value }))
+          ...item.firstTuning.map(stat => ({ source: "初始", name: stat.name, value: stat.value, pendingTransfer: stat.pendingTransfer === true })),
+          ...item.secondaryTuning.map(stat => ({ source: "调律", name: stat.name, value: stat.value, pendingTransfer: stat.pendingTransfer === true }))
         ]
       };
     }
@@ -1328,6 +1401,29 @@
       return null;
     }
 
+    function pendingTransferTarget(stat, rule, benchmark, terms) {
+      if (!stat.pendingTransfer) return null;
+      const isSatisfied = (term, source) => {
+        if (!terms) return !termMatches(term, stat.name);
+        if (source === "初始") return terms.initial.some(actual => termMatches(term, actual));
+        if (source === "调律") return terms.tuning.some(actual => termMatches(term, actual));
+        return terms.scoring.some(actual => termMatches(term, actual.name));
+      };
+      const pools = [];
+      if (rule) {
+        if (stat.source === "初始") pools.push({ terms: rule.initialRequired || [], source: "初始" }, { terms: rule.initialOptionalPool || [], source: "初始" });
+        if (stat.source === "调律") pools.push({ terms: rule.tuningRequired || [], source: "调律" });
+        pools.push({ terms: rule.optionalPool || [], source: "任意" });
+      } else {
+        pools.push({ terms: Object.keys(benchmark.counts || {}), source: "任意" });
+      }
+      for (const pool of pools) {
+        const candidates = pool.terms.filter(term => !isSatisfied(term, pool.source));
+        if (candidates.length) return candidates[0];
+      }
+      return null;
+    }
+
     function evaluateRule(item, benchmark, rec, ruleSlot, rule) {
       const terms = termsOf(item);
       const requiredInitial = (rule.initialRequired || []).map(term => ({
@@ -1378,6 +1474,18 @@
             reason: attributeReason(stat.name, benchmark, relative)
           };
         }
+        const pendingTarget = pendingTransferTarget(stat, rule, benchmark, terms);
+        if (pendingTarget) {
+          return {
+            ...stat,
+            need: pendingTarget,
+            matched: "待转",
+            credit: 1,
+            kind: "pending",
+            pendingTarget,
+            reason: "待转后命中"
+          };
+        }
         return { ...stat, need: "-", matched: "未命中", credit: 0, kind: "miss", reason: "无对应需求" };
       });
 
@@ -1394,6 +1502,13 @@
       ];
       if ((rule.initialOptionalPool || []).length && optionalInitialHits.length === 0) {
         missingRequired.push(rule.initialOptionalPool.join(" / ") + "（首词条任选 1 条）");
+      }
+      for (const entry of termDetails.filter(detail => detail.kind === "pending")) {
+        const index = missingRequired.findIndex(term => term.includes(entry.pendingTarget));
+        if (index !== -1) {
+          missingRequired.splice(index, 1);
+          requiredHit += 1;
+        }
       }
       const rawScore = termDetails.reduce((sum, entry) => sum + entry.credit, 0);
       const total = terms.scoring.length || 5;
@@ -1455,6 +1570,18 @@
             credit: relative,
             kind: "relative",
             reason: attributeReason(stat.name, benchmark, relative)
+          };
+        }
+        const pendingTarget = pendingTransferTarget(stat, null, benchmark, termsOf(item));
+        if (pendingTarget) {
+          return {
+            ...stat,
+            need: pendingTarget,
+            matched: "待转",
+            credit: 1,
+            kind: "pending",
+            pendingTarget,
+            reason: "待转后命中"
           };
         }
         return {
@@ -1575,8 +1702,8 @@
     function matrixAttributeRows(item, match) {
       const scoring = match.termDetails.map(entry => {
         const attrClass = entry.source === "初始" ? "tooltip-attr initial" : "tooltip-attr";
-        const scoreClass = "tooltip-score " + (entry.kind === "hit" ? "hit" : entry.kind === "relative" ? "relative" : "miss");
-        const value = entry.value ? " " + entry.value : "";
+        const scoreClass = "tooltip-score " + (entry.kind === "hit" || entry.kind === "pending" ? "hit" : entry.kind === "relative" ? "relative" : "miss");
+        const value = (entry.value ? " " + entry.value : "") + (entry.pendingTransfer ? "【待转】" : "");
         return '<div class="tooltip-attr-row">' +
           '<span class="' + attrClass + '">' + escapeHtml(entry.name + value) + '</span>' +
           '<span class="' + scoreClass + '">' + escapeHtml(scoreText(entry)) + '</span>' +
@@ -1618,7 +1745,7 @@
     }
 
     function statText(stat) {
-      return stat.name + (stat.value !== null && stat.value !== undefined ? " " + stat.value : "");
+      return stat.name + (stat.value !== null && stat.value !== undefined ? " " + stat.value : "") + (stat.pendingTransfer ? "【待转】" : "");
     }
 
     function itemSourceLabel(item) {
@@ -1627,28 +1754,100 @@
       return "yysls-assistant";
     }
 
-    function renderManualManager() {
+    function ensureManualSlotSelect() {
       const slotOptions = ["佩", "环", "头", "衣服", "腕甲", "胫甲", ...weaponSlots];
       const slotSelect = document.getElementById("manualSlot");
       if (!slotSelect.dataset.ready) {
         slotSelect.innerHTML = slotOptions.map(slot => '<option value="' + escapeHtml(slot) + '">' + escapeHtml(slot) + '</option>').join("");
         slotSelect.dataset.ready = "1";
+        slotSelect.addEventListener("change", () => {
+          manualState.selectedTerms = [];
+          renderManualManager();
+        });
       }
+      return slotSelect;
+    }
+
+    function selectedManualSlot() {
+      return ensureManualSlotSelect().value;
+    }
+
+    function allowedManualTermsForSlot(slot, index) {
+      if (index === 0) return new Set(slotInitialTerms[slot] || []);
+      const baseTerms = new Set([
+        "大外", "小外", "劲", "敏", "势", "精准", "会心", "会意",
+        "大破竹", "小破竹", "大裂石", "小裂石", "大牵丝", "小牵丝", "大鸣金", "小鸣金", "大无相", "小无相",
+        "单体奇术增伤", "群体奇术增伤", "玩家增"
+      ]);
+      for (const term of slotSpecialTerms[slot] || []) baseTerms.add(term);
+      return baseTerms;
+    }
+
+    function groupedManualTerms(slot, index) {
+      const allowed = allowedManualTermsForSlot(slot, index);
+      const selected = new Set(manualState.selectedTerms.map(entry => entry.name));
+      return manualTermGroups
+        .map(group => ({
+          label: group.label,
+          terms: group.terms.filter(term =>
+            AVAILABLE_TERMS.includes(term) &&
+            allowed.has(term) &&
+            !invalidManualTerms.has(term) &&
+            !selected.has(term)
+          )
+        }))
+        .filter(group => group.terms.length);
+    }
+
+    function setPendingTransfer(index, enabled) {
+      manualState.selectedTerms = manualState.selectedTerms.map((entry, entryIndex) => ({
+        ...entry,
+        pendingTransfer: enabled && entryIndex === index
+      }));
+      renderManualManager();
+    }
+
+    function resetManualState() {
+      manualState.selectedTerms = [];
+      manualState.editingId = null;
+    }
+
+    function renderManualManager() {
+      ensureManualSlotSelect();
+      const isEditing = Boolean(manualState.editingId);
+      document.getElementById("manualModalTitle").textContent = isEditing ? "编辑装备" : "手动录入装备";
+      document.getElementById("manualAdd").textContent = isEditing ? "保存修改" : "添加装备";
       const labels = ["初始", "调律2", "调律3", "调律4", "调律5"];
       document.getElementById("manualSequence").innerHTML = manualState.selectedTerms.length
-        ? manualState.selectedTerms.map((term, index) =>
-          '<span class="sequence-chip">' + labels[index] + ' · ' + escapeHtml(term) + '</span>'
+        ? manualState.selectedTerms.map((entry, index) =>
+          '<span class="sequence-chip ' + (entry.pendingTransfer ? "pending" : "") + '">' +
+            labels[index] + ' · ' + escapeHtml(entry.name) +
+            '<label><input class="pending-transfer-toggle" type="checkbox" data-index="' + index + '"' + (entry.pendingTransfer ? " checked" : "") + ' />待转</label>' +
+          '</span>'
         ).join("")
         : '<span class="muted">请选择 5 个词条</span>';
-      document.getElementById("termPalette").innerHTML = AVAILABLE_TERMS.map(term =>
-        '<button class="term-option" type="button" data-term="' + escapeHtml(term) + '"' +
-          (manualState.selectedTerms.length >= 5 ? " disabled" : "") + '>' + escapeHtml(term) + '</button>'
-      ).join("");
+      const nextIndex = manualState.selectedTerms.length;
+      const groups = nextIndex >= 5 ? [] : groupedManualTerms(selectedManualSlot(), nextIndex);
+      document.getElementById("termPalette").innerHTML = nextIndex >= 5
+        ? '<div class="muted">已选择 5 个词条。可在上方勾选其中 1 个为【待转】。</div>'
+        : groups.map(group =>
+          '<section class="term-group">' +
+            '<div class="term-group-title">' + escapeHtml(group.label) + '</div>' +
+            '<div class="term-group-options">' + group.terms.map(term =>
+              '<button class="term-option" type="button" data-term="' + escapeHtml(term) + '">' + escapeHtml(term) + '</button>'
+            ).join("") + '</div>' +
+          '</section>'
+        ).join("") || '<div class="muted">这个部位当前没有可选词条</div>';
       document.querySelectorAll("[data-term]").forEach(button => {
         button.addEventListener("click", () => {
           if (manualState.selectedTerms.length >= 5) return;
-          manualState.selectedTerms.push(button.dataset.term);
+          manualState.selectedTerms.push({ name: button.dataset.term, pendingTransfer: false });
           renderManualManager();
+        });
+      });
+      document.querySelectorAll(".pending-transfer-toggle").forEach(input => {
+        input.addEventListener("change", () => {
+          setPendingTransfer(Number(input.dataset.index), input.checked);
         });
       });
     }
@@ -1656,24 +1855,26 @@
     function buildManualItem() {
       const slot = document.getElementById("manualSlot").value;
       const terms = manualState.selectedTerms;
-      const id = "manual-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
-      const makeStat = name => ({ key: name, name, value: null });
+      const editingItem = localData.addedItems.find(item => item.id === manualState.editingId);
+      const id = editingItem?.id || "manual-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7);
+      const makeStat = entry => ({ key: entry.name, name: entry.name, value: null, pendingTransfer: entry.pendingTransfer === true });
       return {
+        ...(editingItem || {}),
         id,
-        sourceIndex: localData.addedItems.length,
-        source: "manual",
-        rawEquipmentKey: id,
+        sourceIndex: editingItem?.sourceIndex ?? localData.addedItems.length,
+        source: editingItem?.source || "manual",
+        rawEquipmentKey: editingItem?.rawEquipmentKey || id,
         slot,
-        displayName: "手动-" + slot + "-" + terms.slice(0, 2).join("-"),
-        quality: "金",
+        displayName: editingItem?.displayName || "手动-" + slot + "-" + terms.slice(0, 2).map(entry => entry.name).join("-"),
+        quality: editingItem?.quality || "金",
         type: weaponSlots.includes(slot) ? "weapon" : "armor",
-        isChengyin: false,
-        baseAttrs: [],
+        isChengyin: editingItem?.isChengyin === true,
+        baseAttrs: editingItem?.baseAttrs || [],
         firstTuning: terms[0] ? [makeStat(terms[0])] : [],
         secondaryTuning: terms.slice(1, 5).map(makeStat),
-        pitch: [],
-        tuningTimes: null,
-        groups: [{ key: "manual", name: "手动录入" }]
+        pitch: editingItem?.pitch || [],
+        tuningTimes: editingItem?.tuningTimes ?? null,
+        groups: editingItem?.groups || [{ key: "manual", name: "手动录入" }]
       };
     }
 
@@ -1683,9 +1884,13 @@
         return;
       }
       const item = buildManualItem();
-      localData.addedItems.push(item);
+      if (manualState.editingId) {
+        localData.addedItems = localData.addedItems.map(entry => entry.id === manualState.editingId ? item : entry);
+      } else {
+        localData.addedItems.push(item);
+      }
       saveLocalData();
-      manualState.selectedTerms = [];
+      resetManualState();
       applyLocalData();
       state.slot = displaySlot(item);
       state.selectedId = item.id;
@@ -1695,12 +1900,38 @@
     }
 
     function openManualModal() {
+      resetManualState();
       renderManualManager();
       document.getElementById("manualModal").classList.remove("hidden");
     }
 
     function closeManualModal() {
       document.getElementById("manualModal").classList.add("hidden");
+      resetManualState();
+    }
+
+    function isLocalEditableItem(item) {
+      return localData.addedItems.some(entry => entry.id === item.id);
+    }
+
+    function hasPendingTransfer(item) {
+      return [...(item.firstTuning || []), ...(item.secondaryTuning || [])].some(stat => stat.pendingTransfer === true);
+    }
+
+    function openEditModal(item) {
+      if (!isLocalEditableItem(item)) {
+        alert("示例装备不能直接编辑。可以删除示例装备后重新录入自己的装备。");
+        return;
+      }
+      manualState.editingId = item.id;
+      manualState.selectedTerms = [
+        ...(item.firstTuning || []),
+        ...(item.secondaryTuning || [])
+      ].slice(0, 5).map(stat => ({ name: stat.name, pendingTransfer: stat.pendingTransfer === true }));
+      const slotSelect = ensureManualSlotSelect();
+      slotSelect.value = item.slot;
+      renderManualManager();
+      document.getElementById("manualModal").classList.remove("hidden");
     }
 
     function deleteSelectedItem() {
@@ -1721,7 +1952,7 @@
       localData.addedItems = [];
       localData.deletedIds = BASE_ITEMS.map(item => item.id);
       saveLocalData();
-      manualState.selectedTerms = [];
+      resetManualState();
       state.selectedId = null;
       state.selectedBenchmarkId = null;
       applyLocalData();
@@ -1808,7 +2039,7 @@
         if (!confirm("确认恢复示例装备和默认流派配置？\\n本地新增、删除和流派配置改动都会清空。")) return;
         localData = { addedItems: [], deletedIds: [], benchmarkCounts: {} };
         saveLocalData();
-        manualState.selectedTerms = [];
+        resetManualState();
         applyLocalData();
         renderFilters();
         renderAll();
@@ -1857,6 +2088,7 @@
         if (term && !termsOf(item).all.some(name => name.includes(term))) return false;
         if (stateFilter === "chengyin" && !item.isChengyin) return false;
         if (stateFilter === "gold" && item.quality !== "金") return false;
+        if (stateFilter === "pending" && !hasPendingTransfer(item)) return false;
         if (selectedFlow() !== "all" && !viewMatches(item).some(match => match.hit > 0)) return false;
         return true;
       }).sort((a, b) => {
@@ -1886,18 +2118,17 @@
       }).join("");
     }
 
-    function benchmarkPurpose(benchmark, names = []) {
+    function benchmarkPurpose(benchmark) {
       if (benchmark?.flow === "鸣金·影" || benchmark?.flow === "鸣金·虹") return { label: "会意", className: "purpose-huiyi" };
       if (benchmark?.counts?.["大外"] >= 12) return { label: "大外", className: "purpose-dawai" };
       if (benchmark?.counts?.["小外"] >= 12) return { label: "小外", className: "purpose-xiaowai" };
       if (benchmark?.category === "会意流") return { label: "会意", className: "purpose-huiyi" };
-      if (names.some(name => name.includes("玩家增") || name.includes("治疗") || name.includes("受疗"))) return { label: "治疗", className: "purpose-heal" };
+      if ((benchmark?.category || benchmark?.flow || "").includes("治疗")) return { label: "治疗", className: "purpose-heal" };
       return { label: "未分类", className: "purpose-unknown" };
     }
 
     function itemPurpose(item, match) {
-      const scoringNames = termsOf(item).scoring.map(term => term.name);
-      return benchmarkPurpose(match?.benchmark, scoringNames);
+      return benchmarkPurpose(match?.benchmark);
     }
 
     function renderCards() {
@@ -1911,8 +2142,8 @@
         const best = (selectedFlow() === "all" ? allMatches(item) : viewMatches(item))[0];
         const purpose = itemPurpose(item, best);
         const terms = [
-          ...item.firstTuning.map(stat => '<span class="term initial">' + escapeHtml(stat.name) + '</span>'),
-          ...item.secondaryTuning.map(stat => '<span class="term">' + escapeHtml(stat.name) + '</span>'),
+          ...item.firstTuning.map(stat => '<span class="term initial ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(stat.name) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
+          ...item.secondaryTuning.map(stat => '<span class="term ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(stat.name) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
           ...item.pitch.map(stat => '<span class="term pitch">' + escapeHtml(stat.name) + '</span>')
         ].join("");
         const tags = flowTags(item);
@@ -2185,11 +2416,11 @@
 
     function renderScoreTable(match) {
       const rows = match.termDetails.map(entry => {
-        const cls = entry.kind === "hit" ? "hit" : entry.kind === "relative" ? "relative" : "miss";
+        const cls = entry.kind === "hit" || entry.kind === "pending" ? "hit" : entry.kind === "relative" ? "relative" : "miss";
         const score = entry.credit ? "+" + entry.credit : "0";
         const termClass = entry.source === "初始" ? "score-term initial" : "score-term";
         return '<tr class="' + cls + '">' +
-          '<td><span class="' + termClass + '">' + entry.name + '</span></td>' +
+          '<td><span class="' + termClass + '">' + escapeHtml(entry.name + (entry.pendingTransfer ? "【待转】" : "")) + '</span></td>' +
           '<td>' + entry.need + '</td>' +
           '<td>' + entry.matched + '</td>' +
           '<td>' + score + '</td>' +
@@ -2223,15 +2454,19 @@
       const matches = allMatches(item);
       const best = detailMatchFor(item, matches);
       const termBadges = [
-        ...item.firstTuning.map(stat => '<span class="term initial">' + escapeHtml(statText(stat)) + '</span>'),
-        ...item.secondaryTuning.map(stat => '<span class="term">' + escapeHtml(statText(stat)) + '</span>'),
+        ...item.firstTuning.map(stat => '<span class="term initial ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(statText(stat)) + '</span>'),
+        ...item.secondaryTuning.map(stat => '<span class="term ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(statText(stat)) + '</span>'),
         ...item.pitch.map(stat => '<span class="term pitch">' + escapeHtml(statText(stat)) + '</span>')
       ].join("");
+      const actionButtons = (isLocalEditableItem(item)
+        ? '<button class="icon-action" id="editSelected" type="button" title="编辑这件装备" aria-label="编辑这件装备">编</button>'
+        : "") +
+        '<button class="icon-action" id="deleteSelected" type="button" title="删除这件装备" aria-label="删除这件装备">删</button>';
       if (!best) {
         document.getElementById("detail").innerHTML =
           '<div class="detail-head">' +
             '<div class="detail-head-row"><h2>' + escapeHtml(item.displayName) + '</h2>' +
-            '<button class="icon-action" id="deleteSelected" type="button" title="删除这件装备" aria-label="删除这件装备">删</button></div>' +
+            '<div class="manage-actions">' + actionButtons + '</div></div>' +
             '<div class="sub">' + escapeHtml(item.slot + ' · ' + item.quality + (item.isChengyin ? " · 承音" : "") + ' · 来源 ' + itemSourceLabel(item)) + '</div>' +
           '</div>' +
           '<div class="detail-body">' +
@@ -2241,6 +2476,7 @@
               '<div class="need-box">如果当前选择了某个流派，说明这件装备的武器类型不适配该流派；例如破竹·鸢只看手甲和绳镖，不推荐陌刀。</div>' +
             '</div>' +
           '</div>';
+        document.getElementById("editSelected")?.addEventListener("click", () => openEditModal(item));
         document.getElementById("deleteSelected").addEventListener("click", deleteSelectedItem);
         return;
       }
@@ -2259,7 +2495,7 @@
       document.getElementById("detail").innerHTML =
         '<div class="detail-head">' +
           '<div class="detail-head-row"><h2>' + escapeHtml(item.displayName) + '</h2>' +
-          '<button class="icon-action" id="deleteSelected" type="button" title="删除这件装备" aria-label="删除这件装备">删</button></div>' +
+          '<div class="manage-actions">' + actionButtons + '</div></div>' +
           '<div class="sub">' + escapeHtml(item.slot + ' · ' + item.quality + (item.isChengyin ? " · 承音" : "") + ' · 来源 ' + itemSourceLabel(item)) + '</div>' +
         '</div>' +
         '<div class="detail-body">' +
@@ -2297,6 +2533,7 @@
           renderDetail();
         });
       });
+      document.getElementById("editSelected")?.addEventListener("click", () => openEditModal(item));
       document.getElementById("deleteSelected").addEventListener("click", deleteSelectedItem);
     }
 
