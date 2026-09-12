@@ -732,23 +732,35 @@ const html = String.raw`<!doctype html>
       padding: 14px;
     }
     .config-table {
-      min-width: 1180px;
+      min-width: 1640px;
+    }
+    .config-table th,
+    .config-table td {
+      padding: 10px;
+      vertical-align: middle;
     }
     .config-table th:first-child,
     .config-table td:first-child {
-      min-width: 260px;
+      min-width: 230px;
+      max-width: 230px;
     }
     .config-table th:nth-child(2),
     .config-table td:nth-child(2) {
-      min-width: 680px;
+      min-width: 1120px;
     }
     .config-table th:last-child,
     .config-table td:last-child {
-      min-width: 260px;
+      min-width: 250px;
     }
     .config-flow-cell {
       display: grid;
-      gap: 6px;
+      gap: 4px;
+    }
+    .config-flow-cell .matrix-flow-req {
+      max-width: 210px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .config-title-row {
       display: flex;
@@ -767,33 +779,37 @@ const html = String.raw`<!doctype html>
     }
     .count-editor {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 7px;
+      min-width: max-content;
     }
     .count-field {
-      display: grid;
-      gap: 4px;
-      min-width: 78px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
-      padding: 8px;
+      border-radius: 999px;
+      padding: 6px 7px 6px 10px;
       background: rgba(255,255,255,.035);
+      white-space: nowrap;
     }
     .count-field span {
-      color: var(--muted);
-      font-size: 11px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: #e8eef8;
+      font-size: 15px;
+      font-weight: 850;
+      line-height: 1;
     }
     .count-field input {
-      width: 100%;
-      padding: 6px 7px;
-      border-radius: 9px;
+      width: 42px;
+      padding: 4px 5px;
+      border-radius: 999px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.18);
       color: var(--text);
+      font-size: 14px;
       font-weight: 850;
+      text-align: center;
     }
     .config-add-row {
       display: grid;
