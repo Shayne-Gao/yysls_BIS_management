@@ -130,9 +130,19 @@
       color: var(--text);
       border: 1px solid var(--line);
       border-radius: 13px;
-      background: rgba(255,255,255,.07);
+      background: #182232;
       padding: 10px 12px;
       outline: none;
+      color-scheme: dark;
+    }
+    select option {
+      color: #eef4ff;
+      background: #182232;
+    }
+    select option:checked,
+    select option:hover {
+      color: #101722;
+      background: #e9c46a;
     }
     button {
       border: 1px solid var(--line);
@@ -167,7 +177,7 @@
     }
     .modal-backdrop.hidden { display: none; }
     .manual-modal {
-      width: min(920px, 100%);
+      width: min(1120px, 96vw);
       max-height: min(760px, 88vh);
       overflow: auto;
       border: 1px solid rgba(233,196,106,.28);
@@ -235,19 +245,17 @@
     }
     .term-palette {
       display: grid;
-      gap: 10px;
+      gap: 8px;
       margin-top: 10px;
-      max-height: 300px;
-      overflow: auto;
     }
     .term-group {
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 14px;
-      padding: 9px;
+      padding: 8px;
       background: rgba(255,255,255,.025);
     }
     .term-group-title {
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       color: rgba(156,169,190,.9);
       font-size: 12px;
       font-weight: 850;
@@ -255,10 +263,10 @@
     .term-group-options {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
+      gap: 6px;
     }
     .term-option {
-      padding: 6px 9px;
+      padding: 5px 8px;
       font-size: 12px;
     }
     .term-option:disabled {
@@ -799,7 +807,7 @@
       padding: 9px 10px;
       border-radius: 10px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
+      background: #182232;
       color: var(--text);
     }
     @media (max-width: 1080px) {
@@ -1011,7 +1019,7 @@
       "双刀": ["双刀"]
     };
     const invalidManualTerms = new Set(["破竹", "裂石", "牵丝", "鸣金", "无相", "伞", "扇", "鼓", "剑", "枪", "鼓增", "扇增", "伞增", "剑增", "枪增"]);
-    const tabOrder = ["武器","环","佩","头","衣服","腕甲","胫甲"];
+    const tabOrder = ["武器","环","佩","头","衣服","胫甲","腕甲"];
     const attributeGroups = {
       "破竹": ["大破竹", "小破竹"],
       "裂石": ["大裂石", "小裂石"],
@@ -2135,6 +2143,10 @@
     }
 
     function itemPurpose(item, match) {
+      const scoringNames = termsOf(item).scoring.map(term => term.name);
+      if (scoringNames.some(name => name.includes("玩家增") || name.includes("治疗") || name.includes("受疗"))) {
+        return { label: "治疗", className: "purpose-heal" };
+      }
       return benchmarkPurpose(match?.benchmark);
     }
 
