@@ -1,12 +1,117 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
-const baseEquipment = JSON.parse(readFileSync("data/my-equipment.current.json", "utf8"));
-const feishuEquipment = existsSync("data/feishu-equipment.current.json")
+const rawBaseEquipment = JSON.parse(readFileSync("data/my-equipment.current.json", "utf8"));
+const rawFeishuEquipment = existsSync("data/feishu-equipment.current.json")
   ? JSON.parse(readFileSync("data/feishu-equipment.current.json", "utf8"))
   : { items: [] };
-const benchmarks = JSON.parse(readFileSync("data/benchmarks.current.json", "utf8"));
-const recommendations = JSON.parse(readFileSync("data/slot-recommendations.current.json", "utf8"));
-const weaponRules = JSON.parse(readFileSync("data/build-weapon-rules.current.json", "utf8"));
+const rawBenchmarks = JSON.parse(readFileSync("data/benchmarks.current.json", "utf8"));
+const rawRecommendations = JSON.parse(readFileSync("data/slot-recommendations.current.json", "utf8"));
+const rawWeaponRules = JSON.parse(readFileSync("data/build-weapon-rules.current.json", "utf8"));
+
+const weaponDamageTermBySlot = {
+  "手甲": "手甲武学增伤",
+  "绳镖": "绳镖武学增伤",
+  "陌刀": "陌刀武学增伤",
+  "横刀": "横刀武学增伤",
+  "刀": "横刀武学增伤",
+  "唐刀": "横刀武学增伤",
+  "双刀": "双刀武学增伤",
+  "枪": "枪武学增伤",
+  "伞": "伞武学增伤",
+  "扇": "扇武学增伤",
+  "鼓": "鼓武学增伤",
+  "剑": "剑武学增伤"
+};
+const legacyWeaponDamageTerms = {
+  "手甲增伤": "手甲武学增伤",
+  "绳镖增伤": "绳镖武学增伤",
+  "陌刀增伤": "陌刀武学增伤",
+  "横刀增伤": "横刀武学增伤",
+  "双刀增伤": "双刀武学增伤",
+  "枪增伤": "枪武学增伤",
+  "伞增": "伞武学增伤",
+  "伞增伤": "伞武学增伤",
+  "扇增": "扇武学增伤",
+  "扇增伤": "扇武学增伤",
+  "鼓增": "鼓武学增伤",
+  "鼓增伤": "鼓武学增伤",
+  "剑增": "剑武学增伤",
+  "剑增伤": "剑武学增伤"
+};
+function canonicalTermName(term) {
+  return legacyWeaponDamageTerms[term] || weaponDamageTermBySlot[term] || term;
+}
+function normalizeStat(stat) {
+  return { ...stat, name: canonicalTermName(stat.name) };
+}
+function normalizeCounts(counts = {}) {
+  const normalized = {};
+  for (const [term, count] of Object.entries(counts)) {
+    const key = canonicalTermName(term);
+    normalized[key] = (normalized[key] || 0) + count;
+  }
+  return normalized;
+}
+function formatRawCounts(counts = {}) {
+  return Object.entries(counts)
+    .filter(([, count]) => Number(count) > 0)
+    .map(([term, count]) => `${count}${term}`)
+    .join("+");
+}
+function normalizeEquipmentData(data) {
+  return {
+    ...data,
+    items: (data.items || []).map(item => ({
+      ...item,
+      firstTuning: (item.firstTuning || []).map(normalizeStat),
+      secondaryTuning: (item.secondaryTuning || []).map(normalizeStat),
+      pitch: (item.pitch || []).map(normalizeStat)
+    }))
+  };
+}
+function normalizeBenchmarks(data) {
+  return {
+    ...data,
+    benchmarks: (data.benchmarks || []).map(benchmark => {
+      const counts = normalizeCounts(benchmark.counts || {});
+      return { ...benchmark, counts, formula: formatRawCounts(counts) };
+    })
+  };
+}
+function normalizeRule(rule = {}) {
+  return {
+    ...rule,
+    initialRequired: (rule.initialRequired || []).map(canonicalTermName),
+    tuningRequired: (rule.tuningRequired || []).map(canonicalTermName),
+    initialOptionalPool: (rule.initialOptionalPool || []).map(canonicalTermName),
+    optionalPool: (rule.optionalPool || []).map(canonicalTermName)
+  };
+}
+function normalizeRecommendations(data) {
+  return {
+    ...data,
+    derivedBenchmarks: (data.derivedBenchmarks || []).map(entry => ({
+      ...entry,
+      requiredBySlot: Object.fromEntries(Object.entries(entry.requiredBySlot || {}).map(([slot, rule]) => [slot, normalizeRule(rule)]))
+    }))
+  };
+}
+function normalizeWeaponRules(data) {
+  return {
+    ...data,
+    weaponTermToSlot: {
+      ...(data.weaponTermToSlot || {}),
+      ...Object.fromEntries(Object.entries(weaponDamageTermBySlot).map(([slot, term]) => [term, slot])),
+      ...Object.fromEntries(Object.entries(legacyWeaponDamageTerms).map(([legacy, term]) => [legacy, Object.entries(weaponDamageTermBySlot).find(([, value]) => value === term)?.[0] || legacy]))
+    }
+  };
+}
+
+const baseEquipment = normalizeEquipmentData(rawBaseEquipment);
+const feishuEquipment = normalizeEquipmentData(rawFeishuEquipment);
+const benchmarks = normalizeBenchmarks(rawBenchmarks);
+const recommendations = normalizeRecommendations(rawRecommendations);
+const weaponRules = normalizeWeaponRules(rawWeaponRules);
 
 function summarize(items) {
   const bySlot = {};
@@ -33,8 +138,8 @@ const commonTerms = [
   "大外", "小外", "全武", "首领", "精准", "会心", "会意", "敏", "劲", "势",
   "大破竹", "小破竹", "大裂石", "小裂石", "大牵丝", "小牵丝", "大鸣金", "小鸣金", "大无相", "小无相",
   "单体奇术增伤", "玩家增",
-  "手甲", "绳镖", "陌刀", "横刀", "双刀", "枪", "伞", "扇", "鼓", "剑",
-  "手甲增伤", "绳镖增伤", "陌刀增伤", "横刀增伤", "双刀增伤", "枪增伤", "伞增伤", "扇增伤", "鼓增伤", "剑增伤"
+  "手甲武学增伤", "绳镖武学增伤", "陌刀武学增伤", "横刀武学增伤", "双刀武学增伤",
+  "枪武学增伤", "伞武学增伤", "扇武学增伤", "鼓武学增伤", "剑武学增伤"
 ];
 const manualTermOrder = [
   ["大外", "小外", "全武", "首领"],
@@ -42,7 +147,7 @@ const manualTermOrder = [
   ["精准", "会心", "会意"],
   ["大破竹", "小破竹", "大裂石", "小裂石", "大牵丝", "小牵丝", "大鸣金", "小鸣金", "大无相", "小无相"],
   ["单体奇术增伤", "群体奇术增伤", "玩家增"],
-  ["手甲", "手甲增伤", "绳镖", "绳镖增伤", "陌刀", "陌刀增伤", "横刀", "横刀增伤", "双刀", "双刀增伤", "枪", "枪增伤", "伞", "伞增伤", "扇", "扇增伤", "鼓", "鼓增伤", "剑", "剑增伤"]
+  ["手甲武学增伤", "绳镖武学增伤", "陌刀武学增伤", "横刀武学增伤", "双刀武学增伤", "枪武学增伤", "伞武学增伤", "扇武学增伤", "鼓武学增伤", "剑武学增伤"]
 ];
 const manualTermRank = new Map(manualTermOrder.flatMap((group, groupIndex) =>
   group.map((term, termIndex) => [term, groupIndex * 100 + termIndex])
@@ -606,8 +711,8 @@ const html = String.raw`<!doctype html>
     .matrix-wrap {
       width: 100%;
       max-width: 100%;
-      overflow-x: scroll;
-      overflow-y: visible;
+      max-height: calc(100vh - 170px);
+      overflow: auto;
       scrollbar-gutter: stable;
       -webkit-overflow-scrolling: touch;
       padding: 14px;
@@ -630,11 +735,17 @@ const html = String.raw`<!doctype html>
     .matrix-table th {
       position: sticky;
       top: 0;
-      z-index: 2;
-      background: rgba(20, 28, 40, .98);
-      color: var(--muted);
+      z-index: 4;
+      background: rgba(20, 28, 40, .99);
+      color: #dce6f2;
       text-align: left;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      padding: 15px 14px;
+      white-space: nowrap;
     }
+    .matrix-table th:not(:first-child) { min-width: 178px; }
     .matrix-table th:first-child,
     .matrix-table td:first-child {
       position: sticky;
@@ -642,6 +753,10 @@ const html = String.raw`<!doctype html>
       z-index: 3;
       min-width: 150px;
       background: rgba(20, 28, 40, .98);
+    }
+    .matrix-table th:first-child {
+      z-index: 6;
+      min-width: 220px;
     }
     .matrix-flow {
       display: grid;
@@ -705,6 +820,29 @@ const html = String.raw`<!doctype html>
       color: rgba(156,169,190,.78);
       font-size: 11px;
     }
+    .matrix-jumps {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.035);
+    }
+    .matrix-jump {
+      border: 0;
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: #dce6f2;
+      background: rgba(255,255,255,.06);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .matrix-jump:hover {
+      color: #080b12;
+      background: linear-gradient(135deg, #f5d987, #e9c46a);
+    }
     .matrix-cell {
       position: relative;
       display: grid;
@@ -730,12 +868,16 @@ const html = String.raw`<!doctype html>
       font-size: 18px;
       line-height: 1.05;
     }
-    .matrix-score.good { color: #70f28f; }
-    .matrix-score.warn { color: #ffd166; }
+    .matrix-score.perfect { color: #70f28f; }
+    .matrix-score.excellent { color: #58c77d; }
+    .matrix-score.great { color: #b9dd67; }
+    .matrix-score.good { color: #ffd166; }
     .matrix-score.mid { color: #ff9f5a; }
     .matrix-score.bad { color: #ff6b86; }
-    .matrix-flow-total.good { color: #70f28f; }
-    .matrix-flow-total.warn { color: #ffd166; }
+    .matrix-flow-total.perfect { color: #70f28f; }
+    .matrix-flow-total.excellent { color: #58c77d; }
+    .matrix-flow-total.great { color: #b9dd67; }
+    .matrix-flow-total.good { color: #ffd166; }
     .matrix-flow-total.mid { color: #ff9f5a; }
     .matrix-flow-total.bad { color: #ff6b86; }
     .matrix-name {
@@ -1008,6 +1150,11 @@ const html = String.raw`<!doctype html>
       <div class="slot-summary">
         <h2>流派视图</h2>
         <div class="matrix-options">
+          <div class="matrix-jumps" aria-label="流派分类快捷跳转">
+            <button class="matrix-jump" type="button" data-jump-purpose="小外">小外</button>
+            <button class="matrix-jump" type="button" data-jump-purpose="大外">大外</button>
+            <button class="matrix-jump" type="button" data-jump-purpose="会意">会意</button>
+          </div>
           <label class="matrix-toggle">
             <input id="countWeaponsToggle" type="checkbox" />
             <span>计入武器词条</span>
@@ -1086,17 +1233,41 @@ const html = String.raw`<!doctype html>
       "首领": "BOSS_DAMAGE",
       "单体奇术增伤": "SINGLEQS_DAMAGE",
       "群体奇术增伤": "AOEQS_DAMAGE",
+      "手甲增伤": "FIST_DAMAGE",
       "手甲": "FIST_DAMAGE",
+      "手甲武学增伤": "FIST_DAMAGE",
+      "陌刀增伤": "BIGBLADE_DAMAGE",
       "陌刀": "BIGBLADE_DAMAGE",
+      "陌刀武学增伤": "BIGBLADE_DAMAGE",
       "刀": "BLADE_DAMAGE",
       "横刀": "BLADE_DAMAGE",
+      "横刀增伤": "BLADE_DAMAGE",
+      "横刀武学增伤": "BLADE_DAMAGE",
+      "双刀增伤": "2BLADE_DAMAGE",
       "双刀": "2BLADE_DAMAGE",
+      "双刀武学增伤": "2BLADE_DAMAGE",
+      "绳镖增伤": "ROPE_DAMAGE",
       "绳镖": "ROPE_DAMAGE",
+      "绳镖武学增伤": "ROPE_DAMAGE",
+      "枪增伤": "SPEAR_DAMAGE",
       "枪": "SPEAR_DAMAGE",
+      "枪武学增伤": "SPEAR_DAMAGE",
+      "剑增": "SWORD_DAMAGE",
+      "剑增伤": "SWORD_DAMAGE",
       "剑": "SWORD_DAMAGE",
+      "剑武学增伤": "SWORD_DAMAGE",
+      "扇增": "FAN_DAMAGE",
+      "扇增伤": "FAN_DAMAGE",
       "扇": "FAN_DAMAGE",
+      "扇武学增伤": "FAN_DAMAGE",
+      "伞增": "UMBRELLA_DAMAGE",
+      "伞增伤": "UMBRELLA_DAMAGE",
       "伞": "UMBRELLA_DAMAGE",
+      "伞武学增伤": "UMBRELLA_DAMAGE",
+      "鼓增": "DRUM_DAMAGE",
+      "鼓增伤": "DRUM_DAMAGE",
       "鼓": "DRUM_DAMAGE",
+      "鼓武学增伤": "DRUM_DAMAGE",
       "大破竹": "MAX_POZHU_ATTACK",
       "小破竹": "MIN_POZHU_ATTACK",
       "大裂石": "MAX_LIESHI_ATTACK",
@@ -1110,14 +1281,71 @@ const html = String.raw`<!doctype html>
       "外功穿透": "EXTERNAL_PENETRATION"
     };
     const statKeyToName = Object.fromEntries(Object.entries(statNameToKey).map(([name, key]) => [key, name]));
-    statKeyToName["BLADE_DAMAGE"] = "刀";
+    Object.assign(statKeyToName, {
+      FIST_DAMAGE: "手甲武学增伤",
+      BIGBLADE_DAMAGE: "陌刀武学增伤",
+      BLADE_DAMAGE: "横刀武学增伤",
+      "2BLADE_DAMAGE": "双刀武学增伤",
+      ROPE_DAMAGE: "绳镖武学增伤",
+      SPEAR_DAMAGE: "枪武学增伤",
+      SWORD_DAMAGE: "剑武学增伤",
+      FAN_DAMAGE: "扇武学增伤",
+      UMBRELLA_DAMAGE: "伞武学增伤",
+      DRUM_DAMAGE: "鼓武学增伤"
+    });
     const weaponSlots = ["刀","剑","枪","伞","扇","绳镖","鼓","手甲","陌刀","双刀"];
+    const weaponDamageTermBySlot = {
+      "手甲": "手甲武学增伤",
+      "绳镖": "绳镖武学增伤",
+      "陌刀": "陌刀武学增伤",
+      "横刀": "横刀武学增伤",
+      "刀": "横刀武学增伤",
+      "唐刀": "横刀武学增伤",
+      "双刀": "双刀武学增伤",
+      "枪": "枪武学增伤",
+      "伞": "伞武学增伤",
+      "扇": "扇武学增伤",
+      "鼓": "鼓武学增伤",
+      "剑": "剑武学增伤"
+    };
+    const weaponDamageSlotByTerm = Object.fromEntries(Object.entries(weaponDamageTermBySlot).map(([slot, term]) => [term, slot]));
+    const legacyWeaponDamageTerms = {
+      "手甲": "手甲武学增伤",
+      "手甲增伤": "手甲武学增伤",
+      "绳镖": "绳镖武学增伤",
+      "绳镖增伤": "绳镖武学增伤",
+      "陌刀": "陌刀武学增伤",
+      "陌刀增伤": "陌刀武学增伤",
+      "横刀": "横刀武学增伤",
+      "刀": "横刀武学增伤",
+      "唐刀": "横刀武学增伤",
+      "横刀增伤": "横刀武学增伤",
+      "双刀": "双刀武学增伤",
+      "双刀增伤": "双刀武学增伤",
+      "枪": "枪武学增伤",
+      "枪增伤": "枪武学增伤",
+      "伞": "伞武学增伤",
+      "伞增": "伞武学增伤",
+      "伞增伤": "伞武学增伤",
+      "扇": "扇武学增伤",
+      "扇增": "扇武学增伤",
+      "扇增伤": "扇武学增伤",
+      "鼓": "鼓武学增伤",
+      "鼓增": "鼓武学增伤",
+      "鼓增伤": "鼓武学增伤",
+      "剑": "剑武学增伤",
+      "剑增": "剑武学增伤",
+      "剑增伤": "剑武学增伤"
+    };
+    function canonicalTermName(term) {
+      return legacyWeaponDamageTerms[term] || term;
+    }
     const manualTermGroups = [
       { label: "外功", terms: ["大外", "小外"] },
       { label: "劲敏势", terms: ["劲", "敏", "势"] },
       { label: "精准 / 会心 / 会意", terms: ["精准", "会心", "会意"] },
       { label: "属性攻击", terms: ["大破竹", "小破竹", "大裂石", "小裂石", "大牵丝", "小牵丝", "大鸣金", "小鸣金", "大无相", "小无相"] },
-      { label: "神力 / 增伤", terms: ["全武", "首领", "单体奇术增伤", "群体奇术增伤", "玩家增", "手甲", "绳镖", "陌刀", "横刀", "双刀"] }
+      { label: "神力 / 增伤", terms: ["全武", "首领", "单体奇术增伤", "群体奇术增伤", "玩家增", "手甲武学增伤", "绳镖武学增伤", "陌刀武学增伤", "横刀武学增伤", "双刀武学增伤", "枪武学增伤", "伞武学增伤", "扇武学增伤", "鼓武学增伤", "剑武学增伤"] }
     ];
     const slotInitialTerms = {
       "佩": ["大外", "小外"],
@@ -1133,11 +1361,17 @@ const html = String.raw`<!doctype html>
       "环": ["全武"],
       "腕甲": ["首领"],
       "胫甲": ["首领"],
-      "手甲": ["手甲"],
-      "绳镖": ["绳镖"],
-      "陌刀": ["陌刀"],
-      "刀": ["横刀"],
-      "双刀": ["双刀"]
+      "手甲": ["手甲武学增伤"],
+      "绳镖": ["绳镖武学增伤"],
+      "陌刀": ["陌刀武学增伤"],
+      "刀": ["横刀武学增伤"],
+      "横刀": ["横刀武学增伤"],
+      "双刀": ["双刀武学增伤"],
+      "枪": ["枪武学增伤"],
+      "伞": ["伞武学增伤"],
+      "扇": ["扇武学增伤"],
+      "鼓": ["鼓武学增伤"],
+      "剑": ["剑武学增伤"]
     };
     const invalidManualTerms = new Set(["破竹", "裂石", "牵丝", "鸣金", "无相", "伞", "扇", "鼓", "剑", "枪", "鼓增", "扇增", "伞增", "剑增", "枪增"]);
     const tabOrder = ["武器","环","佩","头","衣服","胫甲","腕甲"];
@@ -1162,16 +1396,50 @@ const html = String.raw`<!doctype html>
     const manualState = { selectedTerms: [], editingId: null };
     let localData = loadLocalData();
 
+    function normalizeStoredStat(stat) {
+      return { ...stat, name: canonicalTermName(stat.name || statKeyToName[stat.key] || stat.key) };
+    }
+
+    function normalizeStoredItem(item) {
+      return {
+        ...item,
+        firstTuning: (item.firstTuning || []).map(normalizeStoredStat),
+        secondaryTuning: (item.secondaryTuning || []).map(normalizeStoredStat),
+        pitch: (item.pitch || []).map(normalizeStoredStat)
+      };
+    }
+
+    function normalizeStoredCounts(counts) {
+      const normalized = {};
+      for (const [term, rawCount] of Object.entries(counts || {})) {
+        const count = Number(rawCount);
+        const key = canonicalTermName(term);
+        if (key && Number.isFinite(count) && count > 0) normalized[key] = (normalized[key] || 0) + count;
+      }
+      return normalized;
+    }
+
+    function normalizeStoredBenchmark(benchmark) {
+      return {
+        ...benchmark,
+        counts: normalizeStoredCounts(benchmark.counts || {})
+      };
+    }
+
     function loadLocalData() {
       try {
         const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
         return {
-          addedItems: Array.isArray(parsed.addedItems) ? parsed.addedItems : [],
+          addedItems: Array.isArray(parsed.addedItems) ? parsed.addedItems.map(normalizeStoredItem) : [],
           deletedIds: Array.isArray(parsed.deletedIds) ? parsed.deletedIds : [],
-          benchmarkCounts: parsed.benchmarkCounts && typeof parsed.benchmarkCounts === "object" ? parsed.benchmarkCounts : {},
-          addedBenchmarks: Array.isArray(parsed.addedBenchmarks) ? parsed.addedBenchmarks : [],
+          benchmarkCounts: parsed.benchmarkCounts && typeof parsed.benchmarkCounts === "object"
+            ? Object.fromEntries(Object.entries(parsed.benchmarkCounts).map(([id, counts]) => [id, normalizeStoredCounts(counts)]))
+            : {},
+          addedBenchmarks: Array.isArray(parsed.addedBenchmarks) ? parsed.addedBenchmarks.map(normalizeStoredBenchmark) : [],
           deletedBenchmarkIds: Array.isArray(parsed.deletedBenchmarkIds) ? parsed.deletedBenchmarkIds : [],
-          benchmarkOverrides: parsed.benchmarkOverrides && typeof parsed.benchmarkOverrides === "object" ? parsed.benchmarkOverrides : {}
+          benchmarkOverrides: parsed.benchmarkOverrides && typeof parsed.benchmarkOverrides === "object"
+            ? Object.fromEntries(Object.entries(parsed.benchmarkOverrides).map(([id, benchmark]) => [id, normalizeStoredBenchmark(benchmark)]))
+            : {}
         };
       } catch {
         return { addedItems: [], deletedIds: [], benchmarkCounts: {}, addedBenchmarks: [], deletedBenchmarkIds: [], benchmarkOverrides: {} };
@@ -1228,9 +1496,10 @@ const html = String.raw`<!doctype html>
     }
 
     function transferStat(stat) {
+      const name = canonicalTermName(stat.name || statKeyToName[stat.key] || stat.key);
       const result = {
-        key: stat.key || statNameToKey[stat.name] || stat.name,
-        name: stat.name || statKeyToName[stat.key] || stat.key,
+        key: stat.key || statNameToKey[name] || name,
+        name,
         value: stat.value ?? ""
       };
       if (stat.pendingTransfer) result.pendingTransfer = true;
@@ -1258,7 +1527,7 @@ const html = String.raw`<!doctype html>
     }
 
     function normalizeImportedStat(stat) {
-      const name = stat.name || statKeyToName[stat.key] || stat.key;
+      const name = canonicalTermName(stat.name || statKeyToName[stat.key] || stat.key);
       return {
         key: stat.key || statNameToKey[name] || name,
         name,
@@ -1275,7 +1544,8 @@ const html = String.raw`<!doctype html>
     function countEffectiveTermsForItem(item) {
       const counts = {};
       for (const stat of [...(item.firstTuning || []), ...(item.secondaryTuning || [])]) {
-        counts[stat.name] = (counts[stat.name] || 0) + 1;
+        const name = canonicalTermName(stat.name);
+        counts[name] = (counts[name] || 0) + 1;
       }
       return counts;
     }
@@ -1335,7 +1605,8 @@ const html = String.raw`<!doctype html>
       const cleanCounts = {};
       for (const [term, rawCount] of Object.entries(counts || {})) {
         const count = Number(rawCount);
-        if (term && Number.isFinite(count) && count > 0) cleanCounts[term] = count;
+        const key = canonicalTermName(term);
+        if (key && Number.isFinite(count) && count > 0) cleanCounts[key] = (cleanCounts[key] || 0) + count;
       }
       return cleanCounts;
     }
@@ -1413,15 +1684,19 @@ const html = String.raw`<!doctype html>
       return item.type === "weapon" || weaponSlots.includes(item.slot) ? "武器" : item.slot;
     }
 
+    function statName(stat) {
+      return canonicalTermName(stat.name || statKeyToName[stat.key] || stat.key);
+    }
+
     function termsOf(item) {
       return {
-        initial: item.firstTuning.map(stat => stat.name),
-        tuning: item.secondaryTuning.map(stat => stat.name),
-        pitch: item.pitch.map(stat => stat.name),
-        all: [...item.firstTuning, ...item.secondaryTuning, ...item.pitch].map(stat => stat.name),
+        initial: item.firstTuning.map(statName),
+        tuning: item.secondaryTuning.map(statName),
+        pitch: item.pitch.map(statName),
+        all: [...item.firstTuning, ...item.secondaryTuning, ...item.pitch].map(statName),
         scoring: [
-          ...item.firstTuning.map(stat => ({ source: "初始", name: stat.name, value: stat.value, pendingTransfer: stat.pendingTransfer === true })),
-          ...item.secondaryTuning.map(stat => ({ source: "调律", name: stat.name, value: stat.value, pendingTransfer: stat.pendingTransfer === true }))
+          ...item.firstTuning.map(stat => ({ source: "初始", name: statName(stat), value: stat.value, pendingTransfer: stat.pendingTransfer === true })),
+          ...item.secondaryTuning.map(stat => ({ source: "调律", name: statName(stat), value: stat.value, pendingTransfer: stat.pendingTransfer === true }))
         ]
       };
     }
@@ -1439,14 +1714,25 @@ const html = String.raw`<!doctype html>
 
     function canonicalWeapon(name) {
       if (name === "刀" || name === "唐刀") return "横刀";
+      if (weaponDamageSlotByTerm[name]) return canonicalWeapon(weaponDamageSlotByTerm[name]);
       return name;
     }
 
+    function weaponSlotForTerm(term) {
+      const normalized = canonicalTermName(term);
+      return WEAPON_RULES.weaponTermToSlot?.[term] || WEAPON_RULES.weaponTermToSlot?.[normalized] || weaponDamageSlotByTerm[normalized] || null;
+    }
+
     function termMatches(wanted, actual) {
+      const normalizedWanted = canonicalTermName(wanted);
+      const normalizedActual = canonicalTermName(actual);
+      if (normalizedWanted === normalizedActual) return true;
       if (wanted === actual) return true;
       if (wanted.includes("/")) return wanted.split("/").some(part => termMatches(part, actual));
-      if (attributeGroups[wanted]?.includes(actual)) return true;
-      if (canonicalWeapon(wanted) === canonicalWeapon(actual)) return true;
+      if (attributeGroups[normalizedWanted]?.includes(normalizedActual)) return true;
+      const wantedWeaponSlot = weaponSlotForTerm(normalizedWanted);
+      const actualWeaponSlot = weaponSlotForTerm(normalizedActual);
+      if (wantedWeaponSlot && actualWeaponSlot && canonicalWeapon(wantedWeaponSlot) === canonicalWeapon(actualWeaponSlot)) return true;
       return false;
     }
 
@@ -1480,7 +1766,7 @@ const html = String.raw`<!doctype html>
         return "主武器";
       }
       const allowed = Object.keys(benchmark.counts || {})
-        .map(term => WEAPON_RULES.weaponTermToSlot?.[term])
+        .map(weaponSlotForTerm)
         .filter(Boolean);
       if (allowed.length) {
         return allowed.some(weapon => canonicalWeapon(weapon) === canonicalWeapon(item.slot)) ? "主武器" : null;
@@ -1497,7 +1783,7 @@ const html = String.raw`<!doctype html>
 
     function hardWeaponTerms(benchmark, item) {
       return Object.keys(benchmark.counts || {}).filter(term => {
-        const slot = WEAPON_RULES.weaponTermToSlot?.[term];
+        const slot = weaponSlotForTerm(term);
         return slot && canonicalWeapon(slot) === canonicalWeapon(item.slot);
       });
     }
@@ -1537,7 +1823,7 @@ const html = String.raw`<!doctype html>
         if ([...initialRequired, ...tuningRequired].some(required => termMatches(required, term))) continue;
         if (term === "全武" && !(currentSlot === "佩" || currentSlot === "环")) continue;
         if (term === "首领" && !(currentSlot === "腕甲" || currentSlot === "胫甲")) continue;
-        if (WEAPON_RULES.weaponTermToSlot?.[term]) continue;
+        if (weaponSlotForTerm(term)) continue;
         addUnique(optionalPool, term);
       }
 
@@ -1850,8 +2136,10 @@ const html = String.raw`<!doctype html>
 
     function matrixScoreClass(match) {
       const ratio = match.hit / match.total;
-      if (ratio >= 1) return "good";
-      if (ratio >= 0.8) return "warn";
+      if (ratio >= 1) return "perfect";
+      if (ratio >= 0.96) return "excellent";
+      if (ratio >= 0.9) return "great";
+      if (ratio >= 0.8) return "good";
       if (ratio >= 0.6) return "mid";
       return "bad";
     }
@@ -1894,7 +2182,7 @@ const html = String.raw`<!doctype html>
       });
       const pitch = item.pitch.map(stat =>
         '<div class="tooltip-attr-row">' +
-          '<span class="tooltip-attr">' + escapeHtml(stat.name + (stat.value ? " " + stat.value : "")) + '</span>' +
+          '<span class="tooltip-attr">' + escapeHtml(statName(stat) + (stat.value ? " " + stat.value : "")) + '</span>' +
           '<span class="tooltip-score">定音，不计分</span>' +
         '</div>'
       );
@@ -1928,7 +2216,7 @@ const html = String.raw`<!doctype html>
     }
 
     function statText(stat) {
-      return stat.name + (stat.value !== null && stat.value !== undefined ? " " + stat.value : "") + (stat.pendingTransfer ? "【待转】" : "");
+      return statName(stat) + (stat.value !== null && stat.value !== undefined ? " " + stat.value : "") + (stat.pendingTransfer ? "【待转】" : "");
     }
 
     function itemSourceLabel(item) {
@@ -2042,7 +2330,10 @@ const html = String.raw`<!doctype html>
       const editingItem = localData.addedItems.find(item => item.id === manualState.editingId);
       const sourceItem = editingItem || EQUIPMENT.items.find(item => item.id === manualState.editingId);
       const id = editingItem?.id || (sourceItem ? "edit-" + sourceItem.id + "-" + Date.now().toString(36) : "manual-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 7));
-      const makeStat = (entry, index) => ({ key: entry.name, name: entry.name, value: null, pendingTransfer: index > 0 && entry.pendingTransfer === true });
+      const makeStat = (entry, index) => {
+        const name = canonicalTermName(entry.name);
+        return { key: statNameToKey[name] || name, name, value: null, pendingTransfer: index > 0 && entry.pendingTransfer === true };
+      };
       return {
         ...(sourceItem || {}),
         id,
@@ -2114,7 +2405,7 @@ const html = String.raw`<!doctype html>
       manualState.selectedTerms = [
         ...(item.firstTuning || []),
         ...(item.secondaryTuning || [])
-      ].slice(0, 5).map((stat, index) => ({ name: stat.name, pendingTransfer: index > 0 && stat.pendingTransfer === true }));
+      ].slice(0, 5).map((stat, index) => ({ name: statName(stat), pendingTransfer: index > 0 && stat.pendingTransfer === true }));
       const slotSelect = ensureManualSlotSelect();
       slotSelect.value = item.slot;
       renderManualManager();
@@ -2358,9 +2649,9 @@ const html = String.raw`<!doctype html>
           .map(purpose => '<span class="purpose-label ' + purpose.className + '">' + escapeHtml(purpose.label) + '</span>')
           .join("");
         const terms = [
-          ...item.firstTuning.map(stat => '<span class="term initial ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(stat.name) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
-          ...item.secondaryTuning.map(stat => '<span class="term ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(stat.name) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
-          ...item.pitch.map(stat => '<span class="term pitch">' + escapeHtml(stat.name) + '</span>')
+          ...item.firstTuning.map(stat => '<span class="term initial ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(statName(stat)) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
+          ...item.secondaryTuning.map(stat => '<span class="term ' + (stat.pendingTransfer ? "pending" : "") + '">' + escapeHtml(statName(stat)) + (stat.pendingTransfer ? '<span class="pending-mark">待转</span>' : '') + '</span>'),
+          ...item.pitch.map(stat => '<span class="term pitch">' + escapeHtml(statName(stat)) + '</span>')
         ].join("");
         const tags = flowTags(item);
         return '<article class="card ' + (state.selectedId === item.id ? "active" : "") + '" data-id="' + item.id + '">' +
@@ -2480,7 +2771,7 @@ const html = String.raw`<!doctype html>
             matrixTooltip(best) +
           '</div></td>';
         }).join("");
-        return '<tr><td><div class="matrix-flow">' +
+        return '<tr data-matrix-purpose="' + escapeHtml(row.purpose.label) + '"><td><div class="matrix-flow">' +
           '<div class="matrix-flow-head">' +
             '<span class="matrix-flow-name">' + escapeHtml(row.flow) + '</span>' +
             '<span class="matrix-flow-total ' + matrixScoreClass(row.matrix) + '">' + escapeHtml(formatNumber(row.matrix.hit) + "/" + row.matrix.total) + '</span>' +
@@ -2490,6 +2781,18 @@ const html = String.raw`<!doctype html>
         '</div></td>' + cells + '</tr>';
       }).join("");
       document.getElementById("matrixWrap").innerHTML = '<table class="matrix-table">' + header + '<tbody>' + body + '</tbody></table>';
+    }
+
+    function jumpToMatrixPurpose(label) {
+      const wrap = document.getElementById("matrixWrap");
+      const row = wrap?.querySelector('tr[data-matrix-purpose="' + CSS.escape(label) + '"]');
+      if (!wrap || !row) return;
+      const headerHeight = wrap.querySelector("thead")?.getBoundingClientRect().height || 0;
+      wrap.scrollTo({
+        top: Math.max(0, row.offsetTop - headerHeight - 8),
+        left: wrap.scrollLeft,
+        behavior: "smooth"
+      });
     }
 
     function configTermOptions(benchmark) {
@@ -2904,6 +3207,11 @@ const html = String.raw`<!doctype html>
       if (event.target.id !== "countWeaponsToggle") return;
       state.countWeaponsInMatrix = event.target.checked;
       renderMatrixView();
+    });
+    document.getElementById("matrixView").addEventListener("click", event => {
+      const button = event.target.closest(".matrix-jump");
+      if (!button) return;
+      jumpToMatrixPurpose(button.dataset.jumpPurpose);
     });
     applyLocalData();
     bindManagementEvents();
